@@ -1,0 +1,17 @@
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using Domain.Model.Activities;
+
+namespace Domain.Model.TimeEntries;
+
+public class TimeEntry
+{
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string? Id { get; set; }
+    public required Activity Activity { get; set; }
+    public DateTime? StartTime { get; set; }
+    public DateTime? EndTime { get; set; }
+    // Amount of seconds
+    public int? Duration { get; set; }
+}
