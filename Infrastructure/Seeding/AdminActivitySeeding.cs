@@ -9,7 +9,7 @@ namespace Infrastructure.Seeding
     {
         public static void Seed(IMongoDatabase database, List<XylosUser> users)
         {
-            var collection = database.GetCollection<AdminActivity>("Activities");
+            var collection = database.GetCollection<AdminActivity>("AdminActivities");
 
             var adminActivities = new List<AdminActivity>
             {

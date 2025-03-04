@@ -10,7 +10,7 @@ namespace Infrastructure.Seeding
     {
         public static void Seed(IMongoDatabase database, List<AdminActivity> adminActivities)
         {
-            var collection = database.GetCollection<DetachedTimeEntry>("TimeEntries");
+            var collection = database.GetCollection<DetachedTimeEntry>("DetachedTimeEntries");
 
             var detachedTimeEntries = new List<DetachedTimeEntry>
             {
