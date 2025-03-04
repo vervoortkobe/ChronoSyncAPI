@@ -9,5 +9,6 @@ public class Organisation
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
     public required string Name { get; set; }
-    public required ICollection<Project> Projects { get; set; }
+
+    //public required ICollection<Project> Projects { get; set; }
 }

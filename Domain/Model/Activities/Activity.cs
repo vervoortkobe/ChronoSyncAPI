@@ -18,7 +18,8 @@ public class Activity
     public required DateOnly EndDate { get; set; }
     public required int HoursToSpend { get; set; }
     public required ActivityType Type { get; set; }
-    public required ICollection<TimeEntry> TimeEntries { get; set; }
+
+    //public required ICollection<TimeEntry> TimeEntries { get; set; }
 }
 
 public enum ActivityType
