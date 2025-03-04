@@ -35,7 +35,7 @@ namespace Infrastructure.Seeding
 
             collection.InsertMany(adminActivities);
 
-            DetachedTimeEntrySeeding.Seed(adminActivities);
+            DetachedTimeEntrySeeding.Seed(database, adminActivities);
         }
     }
 }
