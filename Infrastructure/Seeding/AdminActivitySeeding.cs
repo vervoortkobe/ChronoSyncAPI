@@ -30,7 +30,7 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            if (collection.CountDocuments(FilterDefinition<AdminActivity>.Empty) < 0)
+            if (collection.CountDocuments(FilterDefinition<AdminActivity>.Empty) <= 0)
                 collection.InsertMany(adminActivities);
 
             DetachedTimeEntrySeeding.Seed(database, adminActivities);

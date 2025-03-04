@@ -51,7 +51,7 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            if (collection.CountDocuments(FilterDefinition<Activity>.Empty) < 0)
+            if (collection.CountDocuments(FilterDefinition<Activity>.Empty) <= 0)
                 collection.InsertMany(activities);
 
             TimeEntrySeeding.Seed(database, activities);

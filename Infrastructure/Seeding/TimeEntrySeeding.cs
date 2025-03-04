@@ -35,7 +35,7 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            if (collection.CountDocuments(FilterDefinition<TimeEntry>.Empty) < 0)
+            if (collection.CountDocuments(FilterDefinition<TimeEntry>.Empty) <= 0)
                 collection.InsertMany(timeEntries);
         }
     }

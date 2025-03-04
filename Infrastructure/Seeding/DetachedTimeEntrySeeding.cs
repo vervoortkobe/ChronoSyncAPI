@@ -44,7 +44,7 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            if (collection.CountDocuments(FilterDefinition<DetachedTimeEntry>.Empty) < 0)
+            if (collection.CountDocuments(FilterDefinition<DetachedTimeEntry>.Empty) <= 0)
                 collection.InsertMany(detachedTimeEntries);
         }
     }
