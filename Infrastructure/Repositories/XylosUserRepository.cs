@@ -12,10 +12,10 @@ namespace Infrastructure.Repositories
         {
         }
 
-        public async Task<XylosUser?> GetUserByUpnAsync(string upn)
+        public async Task<XylosUser?> GetUserByUPN(string upn)
         {
             var filter = Builders<XylosUser>.Filter.Eq(u => u.UPN, upn);
-            return await _collection.Find(filter).FirstOrDefaultAsync();
+            return await collection.Find(filter).FirstOrDefaultAsync();
         }
     }
 }

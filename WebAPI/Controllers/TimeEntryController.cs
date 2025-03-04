@@ -14,9 +14,15 @@ public class TimeEntryController : Controller
         _mediator = mediator;
     }
 
-    [HttpGet("id/{userId}")]
-    public async Task<IActionResult> GetModuleToSolve(string userId)
+    [HttpGet()]
+    public async Task<IActionResult> GetAll()
     {
-        return Ok(await _mediator.Send(new GetUserByIdQuery { Id = userId }));
+        return Ok(await _mediator.Send(new GetAllTimeEntriesQuery()));
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(string id)
+    {
+        return Ok(await _mediator.Send(new GetTimeEntryByIdQuery { Id = id }));
     }
 }

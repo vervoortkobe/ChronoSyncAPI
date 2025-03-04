@@ -5,5 +5,5 @@ namespace Application.Interfaces;
 
 public interface IXylosUserRepository : IGenericRepository<XylosUser>
 {
-    Task<XylosUser?> GetUserByUpnAsync(string upn);
+    Task<XylosUser?> GetUserByUPN(string upn);
 }

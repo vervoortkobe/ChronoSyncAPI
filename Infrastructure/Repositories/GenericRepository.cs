@@ -21,9 +21,9 @@ namespace Infrastructure.Repositories
         public async Task<IEnumerable<T>> GetAllPaginator(int pageNr, int pageSize)
         {
             return await collection.Find(_ => true)
-                                   .Skip((pageNr - 1) * pageSize)
-                                   .Limit(pageSize)
-                                   .ToListAsync();
+                .Skip((pageNr - 1) * pageSize)
+                .Limit(pageSize)
+                .ToListAsync();
         }
 
         public async Task<T?> GetById(string id)

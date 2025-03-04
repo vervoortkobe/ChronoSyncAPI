@@ -14,9 +14,15 @@ public class ActivityController : Controller
         _mediator = mediator;
     }
 
-    [HttpGet("id/{userId}")]
-    public async Task<IActionResult> GetModuleToSolve(string userId)
+    [HttpGet()]
+    public async Task<IActionResult> GetAll()
     {
-        return Ok(await _mediator.Send(new GetUserByIdQuery { Id = userId }));
+        return Ok(await _mediator.Send(new GetAllActivitiesQuery()));
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(string id)
+    {
+        return Ok(await _mediator.Send(new GetActivityByIdQuery { Id = id }));
     }
 }
