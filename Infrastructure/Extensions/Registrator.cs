@@ -23,6 +23,8 @@ public static class Registrator
     public static IServiceCollection RegisterRepositories(this IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IActivityRepository, ActivityRepository>();
+        services.AddScoped<ITimeEntryRepository, TimeEntryRepository>();
         services.AddScoped<IXylosUserRepository, XylosUserRepository>();
         return services;
     }
