@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
+﻿using Application.CQRS.Users;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
@@ -10,11 +11,12 @@ public class TimeEntryController : Controller
     private IMediator _mediator;
     public TimeEntryController(IMediator mediator)
     {
-        this._mediator = mediator;
+        _mediator = mediator;
     }
 
-    public async Task<IActionResult> GetEmailDomainById()
+    [HttpGet("id/{userId}")]
+    public async Task<IActionResult> GetModuleToSolve(string userId)
     {
-        return Ok(await _mediator.Send(new GetEmailDomainByIdQuery()));
+        return Ok(await _mediator.Send(new GetUserByIdQuery { Id = userId }));
     }
 }

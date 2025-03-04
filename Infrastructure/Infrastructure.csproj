@@ -4,20 +4,26 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Configuration\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Contexts\" />
-    <Folder Include="Repositories\" />
-    <Folder Include="UOW\" />
   </ItemGroup>
 
   <ItemGroup>
+	<PackageReference Include="AutoMapper" Version="14.0.0" />
+	<PackageReference Include="dotenv.net" Version="3.2.1" />
+	<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
+	<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="9.0.2" />
     <PackageReference Include="MongoDB.Bson" Version="3.2.1" />
+    <PackageReference Include="MongoDB.Driver" Version="3.2.1" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.30.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -10,6 +10,6 @@ public class AdminActivity
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
-    public required XylosUser XUser { get; set; }
+    public required XylosUser XylosUser { get; set; }
     public required ICollection<DetachedTimeEntry> TimeEntries {get; set;}
 }

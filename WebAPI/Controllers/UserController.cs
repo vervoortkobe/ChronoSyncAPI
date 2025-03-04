@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.CQRS.Users;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI.Controllers
+namespace WebAPI.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class UserController : Controller
 {
-    public class UserController : Controller
+    private IMediator _mediator;
+    public UserController(IMediator mediator)
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        _mediator = mediator;
+    }
+
+    [HttpGet("id/{userId}")]
+    public async Task<IActionResult> GetModuleToSolve(string userId)
+    {
+        return Ok(await _mediator.Send(new GetUserByIdQuery { Id = userId } ));
     }
 }

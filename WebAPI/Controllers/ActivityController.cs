@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.CQRS.Users;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
@@ -6,8 +8,15 @@ namespace WebAPI.Controllers;
 [Route("[controller]")]
 public class ActivityController : Controller
 {
-    public IActionResult Index()
+    private IMediator _mediator;
+    public ActivityController(IMediator mediator)
     {
-        return View();
+        _mediator = mediator;
+    }
+
+    [HttpGet("id/{userId}")]
+    public async Task<IActionResult> GetModuleToSolve(string userId)
+    {
+        return Ok(await _mediator.Send(new GetUserByIdQuery { Id = userId }));
     }
 }

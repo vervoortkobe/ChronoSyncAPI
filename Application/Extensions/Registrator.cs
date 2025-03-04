@@ -1,6 +1,7 @@
-﻿using Application.Behaviours;
+﻿using System.Reflection;
+using Application.Behaviours;
+using FluentValidation;
 using MediatR;
-using System.Reflection;
 
 namespace Application.Extensions;
 

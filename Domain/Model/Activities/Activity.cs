@@ -10,7 +10,7 @@ public class Activity
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
-    public required XylosUser XUser { get; set; }
+    public required XylosUser XylosUser { get; set; }
     public required Organisation Organisation { get; set; }
     public required Project Project { get; set; }
     public required string Location { get; set; }
