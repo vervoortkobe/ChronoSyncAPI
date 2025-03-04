@@ -12,6 +12,6 @@ public class TimeEntry
     public required Activity Activity { get; set; }
     public DateTime? StartTime { get; set; }
     public DateTime? EndTime { get; set; }
-    // Amount of seconds
+    // Amount of minutes
     public int? Duration { get; set; }
 }

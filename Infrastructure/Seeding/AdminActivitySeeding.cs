@@ -16,17 +16,17 @@ namespace Infrastructure.Seeding
 
             var adminActivities = new List<AdminActivity>
             {
-                new AdminActivity
+                new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
                     XylosUser = users[0]
                 },
-                new AdminActivity
+                new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
                     XylosUser = users[1]
                 },
-                new AdminActivity
+                new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
                     XylosUser = users[2]

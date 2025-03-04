@@ -15,7 +15,7 @@ namespace Infrastructure.Seeding
 
             var users = new List<XylosUser>
             {
-                new XylosUser
+                new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
                     UPN = "user1@xylos.com",
@@ -25,7 +25,7 @@ namespace Infrastructure.Seeding
                     Function = Function.SERVICEDESK,
                     Picture = "https://example.com/john.jpg"
                 },
-                new XylosUser
+                new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
                     UPN = "user2@xylos.com",
@@ -35,7 +35,7 @@ namespace Infrastructure.Seeding
                     Function = Function.ADMINISTRATOR,
                     Picture = "https://example.com/jane.jpg"
                 },
-                new XylosUser
+                new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
                     UPN = "user3@xylos.com",
@@ -50,6 +50,7 @@ namespace Infrastructure.Seeding
             collection.InsertMany(users);
 
             AdminAcitvitySeeding.Seed(database, users);
+            ActivitySeeding.Seed(database, users);
         }
     }
 }
