@@ -21,6 +21,8 @@ public class XylosContext
         Database = client.GetDatabase(mongoUrl.DatabaseName);
 
         ActivityConfiguration.Configure();
+        AdminActivityConfiguration.Configure();
+        DetachedTimeEntryConfiguration.Configure();
         TimeEntryConfiguration.Configure();
         XylosUserConfiguration.Configure();
         XylosUserSeeding.Seed(Database);
