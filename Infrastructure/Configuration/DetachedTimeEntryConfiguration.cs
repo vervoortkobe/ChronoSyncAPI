@@ -26,5 +26,6 @@ public class DetachedTimeEntryConfiguration
                 cm.MapMember(c => c.Duration).SetIsRequired(false);
                 cm.MapMember(c => c.Description).SetIsRequired(true);
             });
+        }
     }
 }
