@@ -19,6 +19,8 @@ public class XylosContext
         var client = new MongoClient(mongoUrl);
         Database = client.GetDatabase(mongoUrl.DatabaseName);
 
+        ActivityConfiguration.Configure();
+        TimeEntryConfiguration.Configure();
         XylosUserConfiguration.Configure();
     }
 

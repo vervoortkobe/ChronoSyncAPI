@@ -21,8 +21,7 @@ public class GetUserByIdQueryValidator : AbstractValidator<GetUserByIdQuery>
     }
 }
 
-public class GetUserByIdDbQueryHandler(IUnitOfWork uow, IMapper mapper)
-    : IRequestHandler<GetUserByIdQuery, GetXylosUserDTO>
+public class GetUserByIdDbQueryHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandler<GetUserByIdQuery, GetXylosUserDTO>
 {
     public async Task<GetXylosUserDTO> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
     {

@@ -14,8 +14,15 @@ public class UserController : Controller
         _mediator = mediator;
     }
 
+
+    [HttpGet()]
+    public async Task<IActionResult> GetAll()
+    {
+        return Ok(await _mediator.Send(new GetAllUsersQuery));
+    }
+
     [HttpGet("id/{userId}")]
-    public async Task<IActionResult> GetModuleToSolve(string userId)
+    public async Task<IActionResult> GetById(string userId)
     {
         return Ok(await _mediator.Send(new GetUserByIdQuery { Id = userId } ));
     }
