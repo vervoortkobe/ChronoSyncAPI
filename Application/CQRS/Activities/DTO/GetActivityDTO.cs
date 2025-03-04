@@ -1,14 +1,10 @@
 ﻿using Domain.Model.Users;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
 
 namespace Domain.Model.Activities;
 
-public class Activity
+public class GetActivityDTO
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string? Id { get; set; }
+    public required string Id { get; set; }
     public required XylosUser XylosUser { get; set; }
     public required string Organisation { get; set; }
     public required string Project { get; set; }
@@ -17,12 +13,4 @@ public class Activity
     public required DateOnly EndDate { get; set; }
     public required int HoursToSpend { get; set; }
     public required ActivityType Type { get; set; }
-
-    //public required ICollection<TimeEntry> TimeEntries { get; set; }
-}
-
-public enum ActivityType
-{
-    TIME,
-    EFFORT
 }

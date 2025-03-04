@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CQRS\Activities\" />
     <Folder Include="Exceptions\" />
   </ItemGroup>
 

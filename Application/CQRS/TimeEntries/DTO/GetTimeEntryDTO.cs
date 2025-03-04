@@ -8,6 +8,5 @@ public class GetTimeEntryDTO
     public required Activity Activity { get; set; }
     public DateTime? StartTime { get; set; }
     public DateTime? EndTime { get; set; }
-    // Amount of minutes
     public int? Duration { get; set; }
 }

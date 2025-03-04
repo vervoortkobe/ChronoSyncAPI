@@ -1,5 +1,4 @@
 ﻿using Domain.Model.Activities;
-using Domain.Model.TimeEntries;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;

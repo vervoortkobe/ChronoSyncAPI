@@ -9,7 +9,7 @@ namespace Infrastructure.Seeding
     {
         public static void Seed(IMongoDatabase database, List<XylosUser> users)
         {
-            var collection = database.GetCollection<AdminActivity>("AdminActivities");
+            var collection = database.GetCollection<AdminActivity>("Activities");
 
             if (collection.CountDocuments(FilterDefinition<AdminActivity>.Empty) > 0)
                 return;
