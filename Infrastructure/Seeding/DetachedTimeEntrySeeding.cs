@@ -31,7 +31,7 @@ namespace Infrastructure.Seeding
                     Category = Category.PROJECT,
                     Date = new DateOnly(2025, 2, 27),
                     Description = "Bezig gehouden met PROJECT XYZ",
-                    Duration = 4320
+                    Duration = 72
                 },
                 new()
                 {
@@ -40,7 +40,7 @@ namespace Infrastructure.Seeding
                     Category = Category.LEARN,
                     Date = new DateOnly(2025, 2, 25),
                     Description = "Bezig gehouden met LEARN XYZ",
-                    Duration = 5700
+                    Duration = 95
                 }
             };
 

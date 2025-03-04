@@ -12,6 +12,8 @@ public class Mappings : Profile
     public Mappings()
     {
         CreateMap<Activity, GetActivityDTO>();
+        CreateMap<AdminActivity, GetAdminActivityDTO>();
+        CreateMap<DetachedTimeEntry, GetDetachedTimeEntryDTO>();
         CreateMap<TimeEntry, GetTimeEntryDTO>();
         CreateMap<XylosUser, GetXylosUserDTO>();
     }

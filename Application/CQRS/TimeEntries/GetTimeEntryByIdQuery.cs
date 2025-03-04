@@ -1,5 +1,4 @@
 ﻿using Application.CQRS.TimeEntries.DTO;
-using Application.CQRS.Users.DTO;
 using Application.Interfaces;
 using AutoMapper;
 using FluentValidation;
