@@ -9,9 +9,9 @@ namespace Infrastructure.Seeding
     {
         public static void Seed(IMongoDatabase database)
         {
-            var collection = database.GetCollection<XylosUser>("XylosUsers");
+            var collXylosUsers = database.GetCollection<XylosUser>("XylosUsers");
 
-            if (collection.CountDocuments(FilterDefinition<XylosUser>.Empty) > 0) 
+            if (collXylosUsers.CountDocuments(FilterDefinition<XylosUser>.Empty) > 0) 
                 return;
 
             var users = new List<XylosUser>
@@ -36,9 +36,21 @@ namespace Infrastructure.Seeding
                     Function = Function.ADMINISTRATOR,
                     Picture = "https://example.com/jane.jpg"
                 },
+                new XylosUser
+                {
+                    Id = ObjectId.GenerateNewId().ToString(),
+                    UPN = "user3@xylos.com",
+                    FirstName = "Jan",
+                    LastName = "Rob",
+                    Email = "jan.rob@xylos.com",
+                    Function = Function.TEAMLEAD,
+                    Picture = "https://example.com/jane.jpg"
+                }
             };
 
-            collection.InsertMany(users);
+            collXylosUsers.InsertMany(users);
+
+            AdminAcitvitySeeding.Seed(database, users);
         }
     }
 }

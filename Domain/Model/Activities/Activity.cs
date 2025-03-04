@@ -11,8 +11,8 @@ public class Activity
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
     public required XylosUser XylosUser { get; set; }
-    public required Organisation Organisation { get; set; }
-    public required Project Project { get; set; }
+    public required string Organisation { get; set; }
+    public required string Project { get; set; }
     public required string Location { get; set; }
     public required DateOnly StartDate { get; set; }
     public required DateOnly EndDate { get; set; }

@@ -29,8 +29,6 @@ public class XylosContext
     public IMongoCollection<Activity> Activities => Database.GetCollection<Activity>("Activities");
     public IMongoCollection<AdminActivity> AdminActivities => Database.GetCollection<AdminActivity>("AdminActivities");
     public IMongoCollection<DetachedTimeEntry> DetachedTimeEntries => Database.GetCollection<DetachedTimeEntry>("DetachedTimeEntries");
-    public IMongoCollection<Organisation> Organisations => Database.GetCollection<Organisation>("Organisations");
-    public IMongoCollection<Project> Projects => Database.GetCollection<Project>("Projects");
     public IMongoCollection<TimeEntry> TimeEntries => Database.GetCollection<TimeEntry>("TimeEntries");
     public IMongoCollection<XylosUser> XylosUsers => Database.GetCollection<XylosUser>("XylosUsers");
 }

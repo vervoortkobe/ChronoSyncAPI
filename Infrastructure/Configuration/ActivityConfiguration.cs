@@ -26,29 +26,7 @@ public class ActivityConfiguration
                 cm.MapMember(c => c.EndDate).SetIsRequired(true);
                 cm.MapMember(c => c.HoursToSpend).SetIsRequired(true);
                 cm.MapMember(c => c.Type).SetIsRequired(true);
-
-                cm.MapMember(c => c.StartDate)
-                  .SetSerializer(new DateOnlySerializer());
-                cm.MapMember(c => c.EndDate)
-                  .SetSerializer(new DateOnlySerializer());
             });
         }
-    }
-}
-
-// Custom serializer for DateOnly (since MongoDB does not natively support it)
-public class DateOnlySerializer : SerializerBase<DateOnly>
-{
-    public override DateOnly Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args)
-    {
-        var dateTime = context.Reader.ReadDateTime();
-        return DateOnly.FromDateTime(DateTime.UnixEpoch.AddMilliseconds(dateTime));
-    }
-
-    public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, DateOnly value)
-    {
-        var dateTime = value.ToDateTime(TimeOnly.MinValue);
-        var milliseconds = (dateTime - DateTime.UnixEpoch).TotalMilliseconds;
-        context.Writer.WriteDateTime((long)milliseconds);
     }
 }
