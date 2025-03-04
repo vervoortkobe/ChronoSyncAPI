@@ -1,5 +1,4 @@
-﻿using Domain.Model.Activities;
-using Domain.Model.Users;
+﻿using Domain.Model.Users;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -9,9 +8,9 @@ namespace Infrastructure.Seeding
     {
         public static void Seed(IMongoDatabase database)
         {
-            var collXylosUsers = database.GetCollection<XylosUser>("XylosUsers");
+            var collection = database.GetCollection<XylosUser>("XylosUsers");
 
-            if (collXylosUsers.CountDocuments(FilterDefinition<XylosUser>.Empty) > 0) 
+            if (collection.CountDocuments(FilterDefinition<XylosUser>.Empty) > 0) 
                 return;
 
             var users = new List<XylosUser>
@@ -48,7 +47,7 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            collXylosUsers.InsertMany(users);
+            collection.InsertMany(users);
 
             AdminAcitvitySeeding.Seed(database, users);
         }

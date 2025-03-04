@@ -9,9 +9,9 @@ namespace Infrastructure.Seeding
     {
         public static void Seed(IMongoDatabase database, List<XylosUser> users)
         {
-            var collAdminActivities = database.GetCollection<AdminActivity>("AdminActivities");
+            var collection = database.GetCollection<AdminActivity>("AdminActivities");
 
-            if (collAdminActivities.CountDocuments(FilterDefinition<AdminActivity>.Empty) > 0)
+            if (collection.CountDocuments(FilterDefinition<AdminActivity>.Empty) > 0)
                 return;
 
             var adminActivities = new List<AdminActivity>
@@ -33,7 +33,9 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            collAdminActivities.InsertMany(adminActivities);
+            collection.InsertMany(adminActivities);
+
+            DetachedTimeEntrySeeding.Seed(adminActivities);
         }
     }
 }
