@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Application.CQRS.Users;
 
-public class GetAllUsersQuery : IRequest<GetXylosUserDTO>
+public class GetAllUsersQuery : IRequest<IEnumerable<GetXylosUserDTO>>
 {
 }
 
@@ -17,10 +17,10 @@ public class GetAllUsersQueryValidator : AbstractValidator<GetAllUsersQuery>
     }
 }
 
-public class GetAllUsersQueryHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandler<GetAllUsersQuery, GetXylosUserDTO>
+public class GetAllUsersQueryHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandler<GetAllUsersQuery, IEnumerable<GetXylosUserDTO>>
 {
-    public async Task<GetXylosUserDTO> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<GetXylosUserDTO>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
     {
-        return mapper.Map<GetXylosUserDTO>(await uow.XylosUserRepository.GetAll()!);
+        return mapper.Map<IEnumerable<GetXylosUserDTO>>(await uow.XylosUserRepository.GetAll()!);
     }
 }

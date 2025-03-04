@@ -12,7 +12,5 @@ namespace Application.CQRS.Users.DTO
         public required string Email { get; set; }
         public required Function Function { get; set; }
         public required string Picture { get; set; }
-        public required AdminActivity AdminActivity { get; set; }
-        public required ICollection<Activity> Activities { get; set; }
     }
 }

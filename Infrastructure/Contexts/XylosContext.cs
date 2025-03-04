@@ -2,6 +2,7 @@
 using Domain.Model.TimeEntries;
 using Domain.Model.Users;
 using Infrastructure.Configuration;
+using Infrastructure.Seeding;
 using MongoDB.Driver;
 
 namespace Infrastructure.Contexts;
@@ -22,6 +23,7 @@ public class XylosContext
         ActivityConfiguration.Configure();
         TimeEntryConfiguration.Configure();
         XylosUserConfiguration.Configure();
+        XylosUserSeeding.Seed(Database);
     }
 
     public IMongoCollection<Activity> Activities => Database.GetCollection<Activity>("Activities");

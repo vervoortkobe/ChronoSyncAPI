@@ -24,8 +24,6 @@ public class XylosUserConfiguration
                 cm.MapMember(c => c.Email).SetIsRequired(true);
                 cm.MapMember(c => c.Function).SetIsRequired(true);
                 cm.MapMember(c => c.Picture).SetIsRequired(false);
-                cm.MapMember(c => c.AdminActivity).SetDefaultValue(new AdminActivity { XylosUser = null, TimeEntries = null});
-                cm.MapMember(c => c.Activities).SetDefaultValue(new List<Activity>());
             });
         }
     }

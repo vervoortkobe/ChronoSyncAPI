@@ -26,7 +26,6 @@ public class ActivityConfiguration
                 cm.MapMember(c => c.EndDate).SetIsRequired(true);
                 cm.MapMember(c => c.HoursToSpend).SetIsRequired(true);
                 cm.MapMember(c => c.Type).SetIsRequired(true);
-                cm.MapMember(c => c.TimeEntries).SetDefaultValue(new List<TimeEntry>());
 
                 cm.MapMember(c => c.StartDate)
                   .SetSerializer(new DateOnlySerializer());
