@@ -10,9 +10,6 @@ namespace Infrastructure.Seeding
         {
             var collection = database.GetCollection<XylosUser>("XylosUsers");
 
-            if (collection.CountDocuments(FilterDefinition<XylosUser>.Empty) > 0) 
-                return;
-
             var users = new List<XylosUser>
             {
                 new()
@@ -47,7 +44,8 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            collection.InsertMany(users);
+            if (collection.CountDocuments(FilterDefinition<XylosUser>.Empty) < 0) 
+                collection.InsertMany(users);
 
             AdminAcitvitySeeding.Seed(database, users);
             ActivitySeeding.Seed(database, users);

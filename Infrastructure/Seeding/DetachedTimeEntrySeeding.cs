@@ -12,9 +12,6 @@ namespace Infrastructure.Seeding
         {
             var collection = database.GetCollection<DetachedTimeEntry>("TimeEntries");
 
-            if (collection.CountDocuments(FilterDefinition<DetachedTimeEntry>.Empty) > 0)
-                return;
-
             var detachedTimeEntries = new List<DetachedTimeEntry>
             {
                 new()
@@ -47,7 +44,8 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            collection.InsertMany(detachedTimeEntries);
+            if (collection.CountDocuments(FilterDefinition<DetachedTimeEntry>.Empty) < 0)
+                collection.InsertMany(detachedTimeEntries);
         }
     }
 }

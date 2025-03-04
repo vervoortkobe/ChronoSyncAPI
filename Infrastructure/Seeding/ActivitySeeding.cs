@@ -11,9 +11,6 @@ namespace Infrastructure.Seeding
         {
             var collection = database.GetCollection<Activity>("Activities");
 
-            if (collection.CountDocuments(FilterDefinition<Activity>.Empty) > 0)
-                return;
-
             var activities = new List<Activity>
             {
                 new()
@@ -54,7 +51,8 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            collection.InsertMany(activities);
+            if (collection.CountDocuments(FilterDefinition<Activity>.Empty) < 0)
+                collection.InsertMany(activities);
 
             TimeEntrySeeding.Seed(database, activities);
         }

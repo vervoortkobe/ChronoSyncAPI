@@ -11,9 +11,6 @@ namespace Infrastructure.Seeding
         {
             var collection = database.GetCollection<AdminActivity>("Activities");
 
-            if (collection.CountDocuments(FilterDefinition<AdminActivity>.Empty) > 0)
-                return;
-
             var adminActivities = new List<AdminActivity>
             {
                 new()
@@ -33,7 +30,8 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            collection.InsertMany(adminActivities);
+            if (collection.CountDocuments(FilterDefinition<AdminActivity>.Empty) < 0)
+                collection.InsertMany(adminActivities);
 
             DetachedTimeEntrySeeding.Seed(database, adminActivities);
         }
