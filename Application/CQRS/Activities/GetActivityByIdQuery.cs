@@ -25,6 +25,6 @@ public class GetActivityByIdQueryHandler(IUnitOfWork uow, IMapper mapper) : IReq
 {
     public async Task<GetActivityDTO> Handle(GetActivityByIdQuery request, CancellationToken cancellationToken)
     {
-        return mapper.Map<GetActivityDTO>(await uow.TimeEntryRepository.GetById(request.Id)!);
+        return mapper.Map<GetActivityDTO>(await uow.ActivityRepository.GetById(request.Id)!);
     }
 }

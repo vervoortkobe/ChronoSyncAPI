@@ -1,6 +1,7 @@
 ﻿using Application.CQRS.TimeEntries.DTO;
 using Application.CQRS.Users.DTO;
 using AutoMapper;
+using Domain.Model.Activities;
 using Domain.Model.TimeEntries;
 using Domain.Model.Users;
 
@@ -10,6 +11,7 @@ public class Mappings : Profile
 {
     public Mappings()
     {
+        CreateMap<Activity, GetActivityDTO>();
         CreateMap<TimeEntry, GetTimeEntryDTO>();
         CreateMap<XylosUser, GetXylosUserDTO>();
     }

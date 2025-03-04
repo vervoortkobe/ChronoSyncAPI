@@ -25,6 +25,7 @@ public class XylosContext
         DetachedTimeEntryConfiguration.Configure();
         TimeEntryConfiguration.Configure();
         XylosUserConfiguration.Configure();
+
         XylosUserSeeding.Seed(Database);
     }
 

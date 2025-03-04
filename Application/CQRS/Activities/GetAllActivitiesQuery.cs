@@ -21,6 +21,6 @@ public class GetAllActivitiesQueryHandler(IUnitOfWork uow, IMapper mapper) : IRe
 {
     public async Task<IEnumerable<GetActivityDTO>> Handle(GetAllActivitiesQuery request, CancellationToken cancellationToken)
     {
-        return mapper.Map<IEnumerable<GetActivityDTO>>(await uow.TimeEntryRepository.GetAll()!);
+        return mapper.Map<IEnumerable<GetActivityDTO>>(await uow.ActivityRepository.GetAll()!);
     }
 }
