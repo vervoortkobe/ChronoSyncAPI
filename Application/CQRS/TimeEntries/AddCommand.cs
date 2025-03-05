@@ -1,19 +1,20 @@
-﻿using AutoMapper;
+﻿using Application.Interfaces;
+using AutoMapper;
 using FluentValidation;
 using MediatR;
 
-namespace Application.CQRS.DetachedTimeEntries
+namespace Application.CQRS.TimeEntries
 {
-    public class AddCommand : IRequest<PersonDetailDTO>
+    public class AddCommand : IRequest<TimeEntryDTO>
     {
-        public PersonDetailDTO Person { get; set; }
+        public required TimeEntryDTO TimeEntry { get; set; }
     }
 
     public class AddCommandValidator : AbstractValidator<AddCommand>
     {
-        private IUnitofWork uow;
+        private IUnitOfWork uow;
 
-        public AddCommandValidator(IUnitofWork uow)
+        public AddCommandValidator(IUnitOfWork uow)
         {
             this.uow = uow;
 
@@ -34,17 +35,17 @@ namespace Application.CQRS.DetachedTimeEntries
                 .WithMessage("The specified employer does not exist");
         }
     }
-    public class AddCommandHandler : IRequestHandler<AddCommand, PersonDetailDTO>
+    public class AddCommandHandler : IRequestHandler<AddCommand, TimeEntryDTO>
     {
-        private readonly IUnitofWork uow;
+        private readonly IUnitOfWork uow;
         private readonly IMapper mapper;
 
-        public AddCommandHandler(IUnitofWork uow, IMapper mapper)
+        public AddCommandHandler(IUnitOfWork uow, IMapper mapper)
         {
             this.uow = uow;
             this.mapper = mapper;
         }
-        public async Task<PersonDetailDTO> Handle(AddCommand request, CancellationToken cancellationToken)
+        public async Task<TimeEntryDTO> Handle(AddCommand request, CancellationToken cancellationToken)
         {
             //var employer = await uow.StoresRepository.GetById(request.Person.EmployerId);
             //if (employer == null)

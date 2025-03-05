@@ -1,5 +1,4 @@
-﻿using Domain.Model.Activities;
-using Domain.Model.TimeEntries;
+﻿using Domain.Model.TimeEntries;
 
 namespace Application.CQRS.DetachedTimeEntries;
 

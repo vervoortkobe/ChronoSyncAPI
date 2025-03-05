@@ -1,4 +1,4 @@
-﻿using Application.CQRS.Users;
+﻿using Application.CQRS.AdminActivities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,21 +8,21 @@ namespace WebAPI.Controllers;
 [Route("[controller]")]
 public class AdminActivityController : Controller
 {
-    private IMediator _mediator;
+    private IMediator mediator;
     public AdminActivityController(IMediator mediator)
     {
-        _mediator = mediator;
+        this.mediator = mediator;
     }
 
     [HttpGet()]
     public async Task<IActionResult> GetAll()
     {
-        return Ok(await _mediator.Send(new GetAllAdminActivitiesQuery()));
+        return Ok(await mediator.Send(new GetAllQuery()));
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(string id)
     {
-        return Ok(await _mediator.Send(new GetAdminActivityByIdQuery { Id = id }));
+        return Ok(await mediator.Send(new GetByIdQuery { Id = id }));
     }
 }

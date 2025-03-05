@@ -8,21 +8,21 @@ namespace WebAPI.Controllers;
 [Route("[controller]")]
 public class UserController : Controller
 {
-    private IMediator _mediator;
+    private IMediator mediator;
     public UserController(IMediator mediator)
     {
-        _mediator = mediator;
+        this.mediator = mediator;
     }
 
     [HttpGet()]
     public async Task<IActionResult> GetAll()
     {
-        return Ok(await _mediator.Send(new GetAllQuery()));
+        return Ok(await mediator.Send(new GetAllQuery()));
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(string id)
     {
-        return Ok(await _mediator.Send(new GetByIdQuery { Id = id } ));
+        return Ok(await mediator.Send(new GetByIdQuery { Id = id }));
     }
 }
