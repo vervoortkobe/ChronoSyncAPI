@@ -4,9 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class AdminActivityController(IMediator mediator) : Controller
+public class AdminActivityController(IMediator mediator) : APIv1Controller
 {
     [HttpGet()]
     public async Task<IActionResult> GetAll([FromQuery] int pageNr = 1, [FromQuery] int pageSize = 10)
