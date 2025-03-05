@@ -15,32 +15,29 @@ namespace Infrastructure.Seeding
                 new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
-                    UPN = "user1@xylos.com",
+                    UPN = "john.doe@xylos.com",
                     FirstName = "John",
                     LastName = "Doe",
-                    Email = "john.doe@xylos.com",
                     Function = Function.SERVICEDESK,
                     Picture = "https://example.com/john.jpg"
                 },
                 new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
-                    UPN = "user2@xylos.com",
+                    UPN = "jane.smith@xylos.com",
                     FirstName = "Jane",
                     LastName = "Smith",
-                    Email = "jane.smith@xylos.com",
                     Function = Function.ADMINISTRATOR,
                     Picture = "https://example.com/jane.jpg"
                 },
                 new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
-                    UPN = "user3@xylos.com",
+                    UPN = "jan.rob@xylos.com",
                     FirstName = "Jan",
                     LastName = "Rob",
-                    Email = "jan.rob@xylos.com",
                     Function = Function.TEAMLEAD,
-                    Picture = "https://example.com/jane.jpg"
+                    Picture = "https://example.com/jan.jpg"
                 }
             };
 

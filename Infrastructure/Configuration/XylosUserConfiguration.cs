@@ -21,7 +21,6 @@ public class XylosUserConfiguration
                 cm.MapMember(c => c.UPN).SetIsRequired(true);
                 cm.MapMember(c => c.FirstName).SetIsRequired(true);
                 cm.MapMember(c => c.LastName).SetIsRequired(true);
-                cm.MapMember(c => c.Email).SetIsRequired(true);
                 cm.MapMember(c => c.Function).SetIsRequired(true);
                 cm.MapMember(c => c.Picture).SetIsRequired(false);
             });
