@@ -1,10 +1,9 @@
-﻿using Application.CQRS.TimeEntries.DTO;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using AutoMapper;
 using FluentValidation;
 using MediatR;
 
-namespace Application.CQRS.Users;
+namespace Application.CQRS.DetachedTimeEntries;
 
 public class CreateDetachedTimeEntryCommand : IRequest<CreateDetachedTimeEntryDTO>
 {

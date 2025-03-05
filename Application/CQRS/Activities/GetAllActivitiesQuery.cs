@@ -1,6 +1,6 @@
-﻿using Application.Interfaces;
+﻿using Application.CQRS.Activities;
+using Application.Interfaces;
 using AutoMapper;
-using Domain.Model.Activities;
 using FluentValidation;
 using MediatR;
 

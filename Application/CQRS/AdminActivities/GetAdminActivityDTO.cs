@@ -1,6 +1,6 @@
 ﻿using Domain.Model.Users;
 
-namespace Domain.Model.Activities;
+namespace Application.CQRS.AdminActivities;
 
 public class GetAdminActivityDTO
 {

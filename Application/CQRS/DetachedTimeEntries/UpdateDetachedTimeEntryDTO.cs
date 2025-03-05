@@ -1,7 +1,7 @@
 ﻿using Domain.Model.Activities;
 using Domain.Model.TimeEntries;
 
-namespace Application.CQRS.TimeEntries.DTO;
+namespace Application.CQRS.DetachedTimeEntries;
 
 public class UpdateDetachedTimeEntryDTO
 {

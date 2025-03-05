@@ -17,12 +17,12 @@ public class UserController : Controller
     [HttpGet()]
     public async Task<IActionResult> GetAll()
     {
-        return Ok(await _mediator.Send(new GetAllUsersQuery()));
+        return Ok(await _mediator.Send(new GetAllQuery()));
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(string id)
     {
-        return Ok(await _mediator.Send(new GetUserByIdQuery { Id = id } ));
+        return Ok(await _mediator.Send(new GetByIdQuery { Id = id } ));
     }
 }

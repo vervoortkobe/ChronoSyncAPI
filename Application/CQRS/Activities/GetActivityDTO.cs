@@ -1,6 +1,7 @@
-﻿using Domain.Model.Users;
+﻿using Domain.Model.Activities;
+using Domain.Model.Users;
 
-namespace Domain.Model.Activities;
+namespace Application.CQRS.Activities;
 
 public class GetActivityDTO
 {

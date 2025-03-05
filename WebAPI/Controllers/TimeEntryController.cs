@@ -17,12 +17,12 @@ public class TimeEntryController : Controller
     [HttpGet()]
     public async Task<IActionResult> GetAll()
     {
-        return Ok(await _mediator.Send(new GetAllTimeEntriesQuery()));
+        return Ok(await _mediator.Send(new GetAllQuery()));
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(string id)
     {
-        return Ok(await _mediator.Send(new GetTimeEntryByIdQuery { Id = id }));
+        return Ok(await _mediator.Send(new GetByIdQuery { Id = id }));
     }
 }

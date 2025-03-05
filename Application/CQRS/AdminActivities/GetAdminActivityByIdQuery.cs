@@ -1,10 +1,9 @@
 ﻿using Application.Interfaces;
 using AutoMapper;
-using Domain.Model.Activities;
 using FluentValidation;
 using MediatR;
 
-namespace Application.CQRS.Users;
+namespace Application.CQRS.AdminActivities;
 
 public class GetAdminActivityByIdQuery : IRequest<GetAdminActivityDTO>
 {

@@ -1,8 +1,8 @@
 ﻿using Domain.Model.Users;
 
-namespace Application.CQRS.Users.DTO;
+namespace Application.CQRS.Users;
 
-public class GetXylosUserDTO
+public class XylosUserDTO
 {
     public required string Id { get; set; }
     public required string UPN { get; set; }

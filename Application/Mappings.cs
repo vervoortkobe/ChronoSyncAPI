@@ -1,5 +1,8 @@
-﻿using Application.CQRS.TimeEntries.DTO;
-using Application.CQRS.Users.DTO;
+﻿using Application.CQRS.Activities;
+using Application.CQRS.AdminActivities;
+using Application.CQRS.DetachedTimeEntries;
+using Application.CQRS.TimeEntries;
+using Application.CQRS.Users;
 using AutoMapper;
 using Domain.Model.Activities;
 using Domain.Model.TimeEntries;
@@ -14,7 +17,7 @@ public class Mappings : Profile
         CreateMap<Activity, GetActivityDTO>();
         CreateMap<AdminActivity, GetAdminActivityDTO>();
         CreateMap<DetachedTimeEntry, GetDetachedTimeEntryDTO>();
-        CreateMap<TimeEntry, GetTimeEntryDTO>();
-        CreateMap<XylosUser, GetXylosUserDTO>();
+        CreateMap<TimeEntry, TimeEntryDTO>();
+        CreateMap<XylosUser, XylosUserDTO>();
     }
 }

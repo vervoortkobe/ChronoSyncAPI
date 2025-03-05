@@ -1,8 +1,8 @@
 ﻿using Domain.Model.Activities;
 
-namespace Application.CQRS.TimeEntries.DTO;
+namespace Application.CQRS.TimeEntries;
 
-public class CreateTimeEntryDTO
+public class AddTimeEntryDTO
 {
     public required Activity Activity { get; set; }
     public DateTime? StartTime { get; set; }

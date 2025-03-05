@@ -1,8 +1,8 @@
 ﻿using Domain.Model.Activities;
 
-namespace Application.CQRS.TimeEntries.DTO;
+namespace Application.CQRS.TimeEntries;
 
-public class GetTimeEntryDTO
+public class TimeEntryDTO
 {
     public required string Id { get; set; }
     public required Activity Activity { get; set; }
