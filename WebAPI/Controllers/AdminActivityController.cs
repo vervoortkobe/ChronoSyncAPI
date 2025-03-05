@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
+[ApiController]
+[Route("admin")]
 public class AdminActivityController(IMediator mediator) : APIv1Controller
 {
     [HttpGet()]

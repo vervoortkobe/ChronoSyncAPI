@@ -24,6 +24,6 @@ public class GetByIdDbQueryHandler(IUnitOfWork uow, IMapper mapper) : IRequestHa
 {
     public async Task<XylosUserDTO> Handle(GetByIdQuery request, CancellationToken cancellationToken)
     {
-        return mapper.Map<XylosUserDTO>(await uow.XylosUserRepository.GetById(request.Id)!);
+        return mapper.Map<XylosUserDTO>(await uow.XylosUserRepository.GetById(request.Id));
     }
 }

@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using System.Linq.Expressions;
+using Application.Interfaces;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -25,6 +26,11 @@ public abstract class GenericRepository<T> : IGenericRepository<T> where T : cla
     {
         var filter = Builders<T>.Filter.Eq("_id", new ObjectId(id));
         return await collection.Find(filter).FirstOrDefaultAsync();
+    }
+
+    public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate)
+    {
+        return await collection.Find(predicate).ToListAsync();
     }
 
     public async Task<T> Create(T newObject)

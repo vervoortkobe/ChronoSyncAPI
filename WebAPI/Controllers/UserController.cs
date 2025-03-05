@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
+[ApiController]
+[Route("users")]
 public class UserController(IMediator mediator) : APIv1Controller
 {
     [HttpGet()]

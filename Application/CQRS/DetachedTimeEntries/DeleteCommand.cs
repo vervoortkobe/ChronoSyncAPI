@@ -2,29 +2,28 @@
 using FluentValidation;
 using MediatR;
 
-namespace Application.CQRS.DetachedTimeEntries
+namespace Application.CQRS.DetachedTimeEntries;
+
+public class DeleteCommand : IRequest<Boolean>
 {
-    public class DeleteCommand : IRequest<Boolean>
-    {
-        public required string Id { get; set; }
-    }
+    public required string Id { get; init; }
+}
 
-    public class DeleteCommandValidator : AbstractValidator<AddCommand>
+public class DeleteCommandValidator : AbstractValidator<AddCommand>
+{
+    public DeleteCommandValidator(IUnitOfWork uow)
     {
-        public DeleteCommandValidator(IUnitOfWork uow)
-        {
-            RuleFor(x => x.DetachedTimeEntry.Id)
-                .NotNull()
-                .WithMessage("Id cannot be empty");
-        }
+        RuleFor(x => x.DetachedTimeEntry.Id)
+            .NotNull()
+            .WithMessage("Id cannot be empty");
     }
+}
 
-    public class DeleteCommandHandler(IUnitOfWork uow) : IRequestHandler<DeleteCommand, Boolean>
+public class DeleteCommandHandler(IUnitOfWork uow) : IRequestHandler<DeleteCommand, Boolean>
+{
+    public async Task<Boolean> Handle(DeleteCommand request, CancellationToken cancellationToken)
     {
-        public async Task<Boolean> Handle(DeleteCommand request, CancellationToken cancellationToken)
-        {
-            await uow.DetachedTimeEntryRepository.Delete(request.Id!);
-            return true;
-        }
+        await uow.DetachedTimeEntryRepository.Delete(request.Id!);
+        return true;
     }
 }

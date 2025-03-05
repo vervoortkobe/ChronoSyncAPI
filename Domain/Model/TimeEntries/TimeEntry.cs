@@ -14,4 +14,5 @@ public class TimeEntry
     public DateTime? EndTime { get; set; }
     // Amount of minutes
     public int? Duration { get; set; }
+    public required string Description { get; set; }
 }

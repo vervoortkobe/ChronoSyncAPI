@@ -2,8 +2,8 @@
 
 namespace WebAPI.Controllers
 {
-    [Route("api/v1/[controller]")]
     [ApiController]
+    [Route("api/v1/[controller]")]
     public abstract class APIv1Controller : ControllerBase
     {
     }

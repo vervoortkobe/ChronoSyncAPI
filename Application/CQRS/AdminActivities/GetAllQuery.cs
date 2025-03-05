@@ -6,8 +6,8 @@ namespace Application.CQRS.AdminActivities;
 
 public class GetAllQuery : IRequest<IEnumerable<AdminActivityDTO>>
 {
-    public int PageNr { get; set; }
-    public int PageSize { get; set; }
+    public int PageNr { get; init; }
+    public int PageSize { get; init; }
 }
 
 public class GetAllQueryHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandler<GetAllQuery, IEnumerable<AdminActivityDTO>>

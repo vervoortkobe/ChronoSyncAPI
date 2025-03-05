@@ -1,5 +1,4 @@
-﻿using Application.CQRS.TimeEntries;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using AutoMapper;
 using FluentValidation;
 using MediatR;
@@ -25,6 +24,6 @@ public class GetByIdQueryHandler(IUnitOfWork uow, IMapper mapper) : IRequestHand
 {
     public async Task<TimeEntryDTO> Handle(GetByIdQuery request, CancellationToken cancellationToken)
     {
-        return mapper.Map<TimeEntryDTO>(await uow.TimeEntryRepository.GetById(request.Id)!);
+        return mapper.Map<TimeEntryDTO>(await uow.TimeEntryRepository.GetById(request.Id));
     }
 }

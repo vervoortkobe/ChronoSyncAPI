@@ -24,6 +24,6 @@ public class GetByIdQueryHandler(IUnitOfWork uow, IMapper mapper) : IRequestHand
 {
     public async Task<DetachedTimeEntryDTO> Handle(GetByIdQuery request, CancellationToken cancellationToken)
     {
-        return mapper.Map<DetachedTimeEntryDTO>(await uow.DetachedTimeEntryRepository.GetById(request.Id)!);
+        return mapper.Map<DetachedTimeEntryDTO>(await uow.DetachedTimeEntryRepository.GetById(request.Id));
     }
 }
