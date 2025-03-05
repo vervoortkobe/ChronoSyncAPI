@@ -3,7 +3,7 @@ using Domain.Model.Users;
 
 namespace Application.CQRS.Activities;
 
-public class GetActivityDTO
+public class ActivityDTO
 {
     public required string Id { get; set; }
     public required XylosUser XylosUser { get; set; }

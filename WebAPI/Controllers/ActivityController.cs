@@ -17,12 +17,12 @@ public class ActivityController : Controller
     [HttpGet()]
     public async Task<IActionResult> GetAll()
     {
-        return Ok(await _mediator.Send(new GetAllActivitiesQuery()));
+        return Ok(await _mediator.Send(new GetAllQuery()));
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(string id)
     {
-        return Ok(await _mediator.Send(new GetActivityByIdQuery { Id = id }));
+        return Ok(await _mediator.Send(new GetByIdQuery { Id = id }));
     }
 }

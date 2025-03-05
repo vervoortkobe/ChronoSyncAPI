@@ -14,7 +14,7 @@ public class Mappings : Profile
 {
     public Mappings()
     {
-        CreateMap<Activity, GetActivityDTO>();
+        CreateMap<Activity, ActivityDTO>();
         CreateMap<AdminActivity, GetAdminActivityDTO>();
         CreateMap<DetachedTimeEntry, GetDetachedTimeEntryDTO>();
         CreateMap<TimeEntry, TimeEntryDTO>();
