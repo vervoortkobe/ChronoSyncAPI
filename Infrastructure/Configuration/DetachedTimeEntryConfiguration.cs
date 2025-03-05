@@ -17,7 +17,7 @@ public class DetachedTimeEntryConfiguration
                 cm.SetIgnoreExtraElements(true);
 
                 cm.MapIdMember(c => c.Id).SetSerializer(new StringSerializer(BsonType.ObjectId));
-                cm.MapMember(c => c.AdminActivity).SetIsRequired(true);
+                cm.MapMember(c => c.Activity).SetIsRequired(true);
                 cm.MapMember(c => c.Category).SetIsRequired(true);
                 cm.MapMember(c => c.Date).SetIsRequired(true);
                 cm.MapMember(c => c.StartTime).SetIsRequired(false);

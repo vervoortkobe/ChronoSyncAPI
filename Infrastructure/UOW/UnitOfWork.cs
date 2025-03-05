@@ -4,13 +4,12 @@ using Infrastructure.Contexts;
 namespace Infrastructure.UOW;
 
 public class UnitOfWork(
-       XylosContext ctxt,
        IActivityRepository activityRepository,
        IAdminActivityRepository adminActivityRepository,
        IDetachedTimeEntryRepository detachedTimeEntryRepository,
        ITimeEntryRepository timeEntryRepository,
-       IXylosUserRepository xylosUserRepository)
-       : IUnitOfWork
+       IXylosUserRepository xylosUserRepository
+    ) : IUnitOfWork
 {
     public IActivityRepository ActivityRepository => activityRepository;
     public IAdminActivityRepository AdminActivityRepository => adminActivityRepository;

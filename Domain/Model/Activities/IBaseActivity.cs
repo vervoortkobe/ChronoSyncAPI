@@ -1,13 +1,13 @@
 ﻿using Domain.Model.Users;
-using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
 
 namespace Domain.Model.Activities;
 
-public class AdminActivity : IBaseActivity
+public interface IBaseActivity
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
-    public required XylosUser XylosUser { get; set; }
+    public XylosUser XylosUser { get; set; }
 }

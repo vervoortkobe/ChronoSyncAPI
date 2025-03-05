@@ -15,9 +15,6 @@ public class XylosUser
     public required string Email { get; set; }
     public required Function Function { get; set; }
     public string? Picture { get; set; }
-
-    //public required AdminActivity AdminActivity { get; set; }
-    //public required ICollection<Activity> Activities { get; set; }
 }
 
 public enum Function

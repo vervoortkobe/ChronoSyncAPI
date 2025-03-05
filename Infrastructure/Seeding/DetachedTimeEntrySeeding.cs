@@ -17,7 +17,7 @@ namespace Infrastructure.Seeding
                 new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
-                    AdminActivity = adminActivities[0],
+                    Activity = adminActivities[0],
                     Category = Category.CLIENT,
                     Date = new DateOnly(2025, 3, 3),
                     Description = "Bezig gehouden met CLIENT XYZ",
@@ -27,7 +27,7 @@ namespace Infrastructure.Seeding
                 new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
-                    AdminActivity = adminActivities[1],
+                    Activity = adminActivities[1],
                     Category = Category.PROJECT,
                     Date = new DateOnly(2025, 2, 27),
                     Description = "Bezig gehouden met PROJECT XYZ",
@@ -36,7 +36,7 @@ namespace Infrastructure.Seeding
                 new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
-                    AdminActivity = adminActivities[2],
+                    Activity = adminActivities[2],
                     Category = Category.LEARN,
                     Date = new DateOnly(2025, 2, 25),
                     Description = "Bezig gehouden met LEARN XYZ",

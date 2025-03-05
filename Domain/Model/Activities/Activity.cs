@@ -1,10 +1,10 @@
 ﻿using Domain.Model.Users;
-using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
 
 namespace Domain.Model.Activities;
 
-public class Activity
+public class Activity : IBaseActivity
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
@@ -17,8 +17,6 @@ public class Activity
     public required DateOnly EndDate { get; set; }
     public required int HoursToSpend { get; set; }
     public required ActivityType Type { get; set; }
-
-    //public required ICollection<TimeEntry> TimeEntries { get; set; }
 }
 
 public enum ActivityType
