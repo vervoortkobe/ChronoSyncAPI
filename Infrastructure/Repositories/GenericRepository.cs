@@ -13,12 +13,7 @@ public abstract class GenericRepository<T> : IGenericRepository<T> where T : cla
         collection = database.GetCollection<T>(collectionName);
     }
 
-    public async Task<IEnumerable<T>> GetAll()
-    {
-        return await collection.Find(_ => true).ToListAsync();
-    }
-
-    public async Task<IEnumerable<T>> GetAllPaginator(int pageNr, int pageSize)
+    public async Task<IEnumerable<T>> GetAll(int pageNr, int pageSize)
     {
         return await collection.Find(_ => true)
             .Skip((pageNr - 1) * pageSize)

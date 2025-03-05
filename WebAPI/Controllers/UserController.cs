@@ -6,18 +6,12 @@ namespace WebAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UserController : Controller
+public class UserController(IMediator mediator) : Controller
 {
-    private IMediator mediator;
-    public UserController(IMediator mediator)
-    {
-        this.mediator = mediator;
-    }
-
     [HttpGet()]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll([FromQuery] int pageNr = 1, [FromQuery] int pageSize = 10)
     {
-        return Ok(await mediator.Send(new GetAllQuery()));
+        return Ok(await mediator.Send(new GetAllQuery() { PageNr = pageNr, PageSize = pageSize }));
     }
 
     [HttpGet("{id}")]

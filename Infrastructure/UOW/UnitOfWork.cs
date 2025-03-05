@@ -17,9 +17,4 @@ public class UnitOfWork(
     public IDetachedTimeEntryRepository DetachedTimeEntryRepository => detachedTimeEntryRepository;
     public ITimeEntryRepository TimeEntryRepository => timeEntryRepository;
     public IXylosUserRepository XylosUserRepository => xylosUserRepository;
-    public async Task Commit()
-    {
-        //await ctxt.SaveChangesAsync();
-        await Task.CompletedTask;
-    }
 }

@@ -7,6 +7,4 @@ public interface IUnitOfWork
     public IDetachedTimeEntryRepository DetachedTimeEntryRepository { get; }
     public ITimeEntryRepository TimeEntryRepository { get; }
     public IXylosUserRepository XylosUserRepository { get; }
-
-    Task Commit();
 }
