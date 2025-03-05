@@ -4,17 +4,21 @@ using Domain.Model.TimeEntries;
 using FluentValidation;
 using MediatR;
 
-namespace Application.CQRS.DetachedTimeEntries
+namespace Application.CQRS.TimeEntries
 {
-    public class AddCommand : IRequest<DetachedTimeEntryDTO>
+    public class UpdateCommand : IRequest<TimeEntryDTO>
     {
-        public required DetachedTimeEntryDTO TimeEntry { get; set; }
+        public required TimeEntryDTO TimeEntry { get; set; }
     }
 
-    public class AddCommandValidator : AbstractValidator<AddCommand>
+    public class UpdateCommandValidator : AbstractValidator<AddCommand>
     {
-        public AddCommandValidator(IUnitOfWork uow)
+        public UpdateCommandValidator(IUnitOfWork uow)
         {
+            RuleFor(x => x.TimeEntry.Id)
+                .NotNull()
+                .WithMessage("Id cannot be empty");
+
             RuleFor(x => x.TimeEntry.Activity)
                 .NotNull()
                 .WithMessage("Activity cannot be empty");
@@ -33,11 +37,11 @@ namespace Application.CQRS.DetachedTimeEntries
         }
     }
 
-    public class AddCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandler<AddCommand, TimeEntryDTO>
+    public class UpdateCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandler<UpdateCommand, TimeEntryDTO>
     {
-        public async Task<TimeEntryDTO> Handle(AddCommand request, CancellationToken cancellationToken)
+        public async Task<TimeEntryDTO> Handle(UpdateCommand request, CancellationToken cancellationToken)
         {
-            await uow.TimeEntryRepository.Create(mapper.Map<TimeEntry>(request.TimeEntry));
+            await uow.TimeEntryRepository.Update(request.TimeEntry.Id!, mapper.Map<TimeEntry>(request.TimeEntry));
             return request.TimeEntry;
         }
     }
