@@ -1,15 +1,7 @@
-﻿using Domain.Model.Users;
-using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
+﻿namespace Domain.Model.Activities;
 
-namespace Domain.Model.Activities;
-
-public class Activity : IBaseActivity
+public class Activity : BaseActivity
 {
-    [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    public string? Id { get; set; }
-    public required XylosUser XylosUser { get; set; }
     public required string Organisation { get; set; }
     public required string Project { get; set; }
     public required string Location { get; set; }

@@ -4,10 +4,10 @@ using MongoDB.Bson;
 
 namespace Domain.Model.Activities;
 
-public interface IBaseActivity
+public class BaseActivity
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
-    public XylosUser XylosUser { get; set; }
+    public required XylosUser XylosUser { get; set; }
 }
