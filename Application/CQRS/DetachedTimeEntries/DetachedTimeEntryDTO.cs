@@ -3,7 +3,7 @@ using Domain.Model.TimeEntries;
 
 namespace Application.CQRS.DetachedTimeEntries;
 
-public class GetDetachedTimeEntryDTO
+public class DetachedTimeEntryDTO
 {
     public required string Id { get; set; }
     public required AdminActivity AdminActivity { get; set; }

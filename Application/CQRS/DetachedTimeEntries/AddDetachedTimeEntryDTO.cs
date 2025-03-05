@@ -1,9 +1,8 @@
-﻿using Domain.Model.Activities;
-using Domain.Model.TimeEntries;
+﻿using Domain.Model.TimeEntries;
 
 namespace Application.CQRS.DetachedTimeEntries;
 
-public class CreateDetachedTimeEntryDTO
+public class AddDetachedTimeEntryDTO
 {
     public required Category Category { get; set; }
     public required DateOnly Date { get; set; }
