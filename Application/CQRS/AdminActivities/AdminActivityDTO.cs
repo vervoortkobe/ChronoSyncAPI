@@ -2,7 +2,7 @@
 
 namespace Application.CQRS.AdminActivities;
 
-public class GetAdminActivityDTO
+public class AdminActivityDTO
 {
     public required string Id { get; set; }
     public required XylosUser XylosUser { get; set; }
