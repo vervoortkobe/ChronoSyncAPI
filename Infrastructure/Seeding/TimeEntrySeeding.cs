@@ -18,20 +18,23 @@ namespace Infrastructure.Seeding
                     Id = ObjectId.GenerateNewId().ToString(),
                     Activity = activities[1],
                     StartTime = DateTime.Now,
-                    EndTime = DateTime.Now.AddMinutes(334)
+                    EndTime = DateTime.Now.AddMinutes(334),
+                    Description = "Meeting with company Xylosophos"
                 },
                 new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
                     Activity = activities[1],
-                    Duration = 146
+                    Duration = 146,
+                    Description = "Meeting with company Xylosophos"
                 },
                 new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
                     Activity = activities[2],
                     StartTime = DateTime.Now,
-                    EndTime = DateTime.Now.AddMinutes(306)
+                    EndTime = DateTime.Now.AddMinutes(306),
+                    Description = "Consulting AP Hogeschool"
                 }
             };
 
