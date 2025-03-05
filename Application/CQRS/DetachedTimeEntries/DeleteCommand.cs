@@ -4,26 +4,39 @@ using MediatR;
 
 namespace Application.CQRS.DetachedTimeEntries;
 
-public class DeleteCommand : IRequest<Boolean>
+public class DeleteCommand : IRequest<bool>
 {
-    public required string Id { get; init; }
+    public required string ActivityId { get; init; }
+    public required string TimeEntryId { get; init; }
 }
 
-public class DeleteCommandValidator : AbstractValidator<AddCommand>
+public class DeleteCommandValidator : AbstractValidator<DeleteCommand>
 {
     public DeleteCommandValidator(IUnitOfWork uow)
     {
-        RuleFor(x => x.DetachedTimeEntry.Id)
+        RuleFor(x => x.ActivityId)
             .NotNull()
-            .WithMessage("Id cannot be empty");
+            .WithMessage("ActivityId cannot be empty");
+
+        RuleFor(x => x.TimeEntryId)
+            .NotNull()
+            .WithMessage("TimeEntryId cannot be empty");
+
+        RuleFor(x => x.TimeEntryId)
+            .MustAsync(async (command, id, cancellation) =>
+            {
+                var timeEntry = await uow.DetachedTimeEntryRepository.GetById(id);
+                return timeEntry != null && timeEntry.AdminActivity.Id == command.ActivityId;
+            })
+            .WithMessage("The specified TimeEntry does not exist or does not match the ActivityId");
     }
 }
 
-public class DeleteCommandHandler(IUnitOfWork uow) : IRequestHandler<DeleteCommand, Boolean>
+public class DeleteCommandHandler(IUnitOfWork uow) : IRequestHandler<DeleteCommand, bool>
 {
-    public async Task<Boolean> Handle(DeleteCommand request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(DeleteCommand request, CancellationToken cancellationToken)
     {
-        await uow.DetachedTimeEntryRepository.Delete(request.Id!);
+        await uow.DetachedTimeEntryRepository.Delete(request.TimeEntryId!);
         return true;
     }
 }

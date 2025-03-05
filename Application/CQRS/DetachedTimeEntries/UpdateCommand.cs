@@ -8,16 +8,30 @@ namespace Application.CQRS.DetachedTimeEntries;
 
 public class UpdateCommand : IRequest<DetachedTimeEntryDTO>
 {
+    public required string ActivityId { get; init; }
+    public required string TimeEntryId { get; init; }
     public required DetachedTimeEntryDTO DetachedTimeEntry { get; init; }
 }
 
-public class UpdateCommandValidator : AbstractValidator<AddCommand>
+public class UpdateCommandValidator : AbstractValidator<UpdateCommand>
 {
     public UpdateCommandValidator(IUnitOfWork uow)
     {
-        RuleFor(x => x.DetachedTimeEntry.Id)
+        RuleFor(x => x.ActivityId)
             .NotNull()
-            .WithMessage("Id cannot be empty");
+            .WithMessage("ActivityId cannot be empty");
+
+        RuleFor(x => x.TimeEntryId)
+            .NotNull()
+            .WithMessage("TimeEntryId cannot be empty");
+
+        RuleFor(x => x.TimeEntryId)
+            .MustAsync(async (command, id, cancellation) =>
+            {
+                var timeEntry = await uow.DetachedTimeEntryRepository.GetById(id);
+                return timeEntry != null && timeEntry.Activity.Id == command.ActivityId;
+            })
+            .WithMessage("The specified TimeEntry does not exist or does not match the ActivityId");
 
         RuleFor(x => x.DetachedTimeEntry.Category)
             .NotNull()

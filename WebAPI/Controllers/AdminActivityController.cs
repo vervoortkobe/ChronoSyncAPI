@@ -1,7 +1,5 @@
-﻿using Application.CQRS.Activities;
-using Application.CQRS.AdminActivities;
+﻿using Application.CQRS.AdminActivities;
 using Application.CQRS.DetachedTimeEntries;
-using Application.CQRS.TimeEntries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,13 +24,13 @@ public class AdminActivityController(IMediator mediator) : APIv1Controller
     [HttpGet("{activityId}/timeentries")]
     public async Task<IActionResult> GetTimeEntries(string activityId)
     {
-        return Ok(await mediator.Send(new GetTimeEntriesByActivityIdQuery() { ActivityId = activityId }));
+        return Ok(await mediator.Send(new GetDetachedTimeEntriesByActivityIdQuery() { ActivityId = activityId }));
     }
 
     [HttpPost("{activityId}/timeentries")]
-    public async Task<IActionResult> CreateTimeEntry(string activityId, [FromBody] TimeEntryDTO o)
+    public async Task<IActionResult> CreateTimeEntry(string activityId, [FromBody] DetachedTimeEntryDTO o)
     {
-        return Created("", await mediator.Send(new AddCommand() { ActivityId = activityId, TimeEntry = o }));
+        return Created("", await mediator.Send(new AddCommand() { ActivityId = activityId, DetachedTimeEntry = o }));
     }
 
     [HttpGet("{activityId}/timeentries/{timeEntryId}")]
@@ -42,9 +40,9 @@ public class AdminActivityController(IMediator mediator) : APIv1Controller
     }
 
     [HttpPut("{activityId}/timeentries/{timeEntryId}")]
-    public async Task<IActionResult> UpdateTimeEntry(string activityId, string timeEntryId, [FromBody] TimeEntryDTO o)
+    public async Task<IActionResult> UpdateTimeEntry(string activityId, string timeEntryId, [FromBody] DetachedTimeEntryDTO o)
     {
-        return Ok(await mediator.Send(new UpdateCommand() { ActivityId = activityId, TimeEntryId = timeEntryId, TimeEntry = o }));
+        return Ok(await mediator.Send(new UpdateCommand() { ActivityId = activityId, TimeEntryId = timeEntryId, DetachedTimeEntry = o }));
     }
 
     [HttpDelete("{activityId}/timeentries/{timeEntryId}")]

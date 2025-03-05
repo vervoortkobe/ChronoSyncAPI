@@ -4,7 +4,7 @@ using AutoMapper;
 using FluentValidation;
 using MediatR;
 
-namespace Application.CQRS.Activities;
+namespace Application.CQRS.AdminActivities;
 
 public class GetDetachedTimeEntryByActivityIdQuery : IRequest<DetachedTimeEntryDTO>
 {

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Application.CQRS.TimeEntries;
 
-public class DeleteCommand : IRequest<Boolean>
+public class DeleteCommand : IRequest<bool>
 {
     public required string ActivityId { get; init; }
     public required string TimeEntryId { get; init; }
@@ -32,9 +32,9 @@ public class DeleteCommandValidator : AbstractValidator<DeleteCommand>
     }
 }
 
-public class DeleteCommandHandler(IUnitOfWork uow) : IRequestHandler<DeleteCommand, Boolean>
+public class DeleteCommandHandler(IUnitOfWork uow) : IRequestHandler<DeleteCommand, bool>
 {
-    public async Task<Boolean> Handle(DeleteCommand request, CancellationToken cancellationToken)
+    public async Task<bool> Handle(DeleteCommand request, CancellationToken cancellationToken)
     {
         await uow.TimeEntryRepository.Delete(request.TimeEntryId!);
         return true;

@@ -8,6 +8,7 @@ namespace Application.CQRS.DetachedTimeEntries;
 
 public class AddCommand : IRequest<DetachedTimeEntryDTO>
 {
+    public required string ActivityId { get; init; }
     public required DetachedTimeEntryDTO DetachedTimeEntry { get; init; }
 }
 
@@ -15,6 +16,18 @@ public class AddCommandValidator : AbstractValidator<AddCommand>
 {
     public AddCommandValidator(IUnitOfWork uow)
     {
+        RuleFor(x => x.ActivityId)
+            .NotNull()
+            .WithMessage("ActivityId cannot be empty");
+
+        RuleFor(x => x.ActivityId)
+            .MustAsync(async (id, cancellation) =>
+            {
+                var activity = await uow.AdminActivityRepository.GetById(id);
+                return (activity != null);
+            })
+            .WithMessage("The specified activity does not exist");
+
         RuleFor(x => x.DetachedTimeEntry.Category)
             .NotNull()
             .WithMessage("Category cannot be empty");
