@@ -12,6 +12,7 @@ public class XylosUser
     public required string UPN { get; set; }
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
+    public required string Email { get; set; }
     public required Function Function { get; set; }
     public string? Picture { get; set; }
 
