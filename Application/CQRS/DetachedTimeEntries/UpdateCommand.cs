@@ -29,7 +29,7 @@ public class UpdateCommandValidator : AbstractValidator<UpdateCommand>
             .MustAsync(async (command, id, cancellation) =>
             {
                 var timeEntry = await uow.DetachedTimeEntryRepository.GetById(id);
-                return timeEntry != null && timeEntry.Activity.Id == command.ActivityId;
+                return timeEntry != null && timeEntry.AdminActivity.Id == command.ActivityId;
             })
             .WithMessage("The specified TimeEntry does not exist or does not match the ActivityId");
 
