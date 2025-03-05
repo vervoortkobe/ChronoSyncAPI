@@ -25,7 +25,7 @@ public class DeleteCommandValidator : AbstractValidator<DeleteCommand>
         RuleFor(x => x.TimeEntryId)
             .MustAsync(async (command, id, cancellation) =>
             {
-                var timeEntry = await uow.DetachedTimeEntryRepository.GetById(id);
+                var timeEntry = await uow.TimeEntryRepository.GetById(id);
                 return timeEntry != null && timeEntry.Activity.Id == command.ActivityId;
             })
             .WithMessage("The specified TimeEntry does not exist or does not match the ActivityId");
@@ -36,7 +36,7 @@ public class DeleteCommandHandler(IUnitOfWork uow) : IRequestHandler<DeleteComma
 {
     public async Task<bool> Handle(DeleteCommand request, CancellationToken cancellationToken)
     {
-        await uow.DetachedTimeEntryRepository.Delete(request.TimeEntryId!);
+        await uow.TimeEntryRepository.Delete(request.TimeEntryId!);
         return true;
     }
 }

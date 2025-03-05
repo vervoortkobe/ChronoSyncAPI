@@ -1,6 +1,5 @@
 ﻿using Domain.Model.Activities;
 using Domain.Model.TimeEntries;
-using Domain.Model.Users;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -10,9 +9,9 @@ namespace Infrastructure.Seeding
     {
         public static void Seed(IMongoDatabase database, List<AdminActivity> adminActivities)
         {
-            var collection = database.GetCollection<DetachedTimeEntry>("DetachedTimeEntries");
+            var collection = database.GetCollection<BaseTimeEntry>("TimeEntries");
 
-            var detachedTimeEntries = new List<DetachedTimeEntry>
+            var timeEntries = new List<DetachedTimeEntry>
             {
                 new()
                 {
@@ -44,8 +43,9 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            if (collection.CountDocuments(FilterDefinition<DetachedTimeEntry>.Empty) <= 0)
-                collection.InsertMany(detachedTimeEntries);
+            var filter = Builders<BaseTimeEntry>.Filter.Eq("_t", nameof(DetachedTimeEntry));
+            if (collection.CountDocuments(filter) == 0)
+                collection.InsertMany(timeEntries);
         }
     }
 }

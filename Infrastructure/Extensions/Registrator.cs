@@ -24,8 +24,6 @@ public static class Registrator
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IActivityRepository, ActivityRepository>();
-        services.AddScoped<IAdminActivityRepository, AdminActivityRepository>();
-        services.AddScoped<IDetachedTimeEntryRepository, DetachedTimeEntryRepository>();
         services.AddScoped<ITimeEntryRepository, TimeEntryRepository>();
         services.AddScoped<IXylosUserRepository, XylosUserRepository>();
         return services;

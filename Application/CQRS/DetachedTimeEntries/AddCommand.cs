@@ -23,7 +23,7 @@ public class AddCommandValidator : AbstractValidator<AddCommand>
         RuleFor(x => x.ActivityId)
             .MustAsync(async (id, cancellation) =>
             {
-                var activity = await uow.AdminActivityRepository.GetById(id);
+                var activity = await uow.ActivityRepository.GetById(id);
                 return (activity != null);
             })
             .WithMessage("The specified activity does not exist");
@@ -51,7 +51,7 @@ public class AddCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandle
 {
     public async Task<DetachedTimeEntryDTO> Handle(AddCommand request, CancellationToken cancellationToken)
     {
-        await uow.DetachedTimeEntryRepository.Create(mapper.Map<DetachedTimeEntry>(request.DetachedTimeEntry));
+        await uow.TimeEntryRepository.Create(mapper.Map<DetachedTimeEntry>(request.DetachedTimeEntry));
         return request.DetachedTimeEntry;
     }
 }

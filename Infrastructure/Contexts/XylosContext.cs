@@ -20,8 +20,10 @@ public class XylosContext
         var client = new MongoClient(mongoUrl);
         Database = client.GetDatabase(mongoUrl.DatabaseName);
 
+        BaseActivityConfiguration.Configure();
         ActivityConfiguration.Configure();
         AdminActivityConfiguration.Configure();
+        BaseTimeEntryConfiguration.Configure();
         DetachedTimeEntryConfiguration.Configure();
         TimeEntryConfiguration.Configure();
         XylosUserConfiguration.Configure();
@@ -30,8 +32,6 @@ public class XylosContext
     }
 
     public IMongoCollection<Activity> Activities => Database.GetCollection<Activity>("Activities");
-    public IMongoCollection<AdminActivity> AdminActivities => Database.GetCollection<AdminActivity>("AdminActivities");
-    public IMongoCollection<DetachedTimeEntry> DetachedTimeEntries => Database.GetCollection<DetachedTimeEntry>("DetachedTimeEntries");
     public IMongoCollection<TimeEntry> TimeEntries => Database.GetCollection<TimeEntry>("TimeEntries");
     public IMongoCollection<XylosUser> XylosUsers => Database.GetCollection<XylosUser>("XylosUsers");
 }

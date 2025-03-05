@@ -1,4 +1,5 @@
 ﻿using Domain.Model.Activities;
+using Domain.Model.TimeEntries;
 using Domain.Model.Users;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -9,9 +10,9 @@ namespace Infrastructure.Seeding
     {
         public static void Seed(IMongoDatabase database, List<XylosUser> users)
         {
-            var collection = database.GetCollection<AdminActivity>("AdminActivities");
+            var collection = database.GetCollection<BaseActivity>("Activities");
 
-            var adminActivities = new List<AdminActivity>
+            var activities = new List<AdminActivity>
             {
                 new()
                 {
@@ -30,10 +31,11 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            if (collection.CountDocuments(FilterDefinition<AdminActivity>.Empty) <= 0)
-                collection.InsertMany(adminActivities);
+            var filter = Builders<BaseActivity>.Filter.Eq("_t", nameof(AdminActivity));
+            if (collection.CountDocuments(filter) == 0)
+                collection.InsertMany(activities);
 
-            DetachedTimeEntrySeeding.Seed(database, adminActivities);
+            DetachedTimeEntrySeeding.Seed(database, activities);
         }
     }
 }

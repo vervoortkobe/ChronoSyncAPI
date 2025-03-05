@@ -14,6 +14,6 @@ public class GetAllQueryHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandl
 {
     public async Task<IEnumerable<DetachedTimeEntryDTO>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
-        return mapper.Map<IEnumerable<DetachedTimeEntryDTO>>(await uow.DetachedTimeEntryRepository.GetAll(request.PageNr, request.PageSize));
+        return mapper.Map<IEnumerable<DetachedTimeEntryDTO>>(await uow.TimeEntryRepository.GetAll(request.PageNr, request.PageSize));
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Domain.Model.Activities;
+using Domain.Model.TimeEntries;
 using Domain.Model.Users;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -9,7 +10,7 @@ namespace Infrastructure.Seeding
     {
         public static void Seed(IMongoDatabase database, List<XylosUser> users)
         {
-            var collection = database.GetCollection<Activity>("Activities");
+            var collection = database.GetCollection<BaseActivity>("Activities");
 
             var activities = new List<Activity>
             {
@@ -51,7 +52,8 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            if (collection.CountDocuments(FilterDefinition<Activity>.Empty) <= 0)
+            var filter = Builders<BaseActivity>.Filter.Eq("_t", nameof(Activity));
+            if (collection.CountDocuments(filter) == 0)
                 collection.InsertMany(activities);
 
             TimeEntrySeeding.Seed(database, activities);

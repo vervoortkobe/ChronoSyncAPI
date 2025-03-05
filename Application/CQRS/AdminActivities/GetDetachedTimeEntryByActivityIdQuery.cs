@@ -30,7 +30,7 @@ public class GetDetachedTimeEntryByActivityIdQueryHandler(IUnitOfWork uow, IMapp
 {
     public async Task<DetachedTimeEntryDTO> Handle(GetDetachedTimeEntryByActivityIdQuery request, CancellationToken cancellationToken)
     {
-        var timeEntry = await uow.DetachedTimeEntryRepository.GetById(request.TimeEntryId);
+        var timeEntry = await uow.TimeEntryRepository.GetById(request.TimeEntryId);
         if (timeEntry != null && timeEntry.Activity.Id == request.ActivityId)
             return mapper.Map<DetachedTimeEntryDTO>(timeEntry);
 

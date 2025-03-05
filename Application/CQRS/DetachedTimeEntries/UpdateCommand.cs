@@ -28,7 +28,7 @@ public class UpdateCommandValidator : AbstractValidator<UpdateCommand>
         RuleFor(x => x.TimeEntryId)
             .MustAsync(async (command, id, cancellation) =>
             {
-                var timeEntry = await uow.DetachedTimeEntryRepository.GetById(id);
+                var timeEntry = await uow.TimeEntryRepository.GetById(id);
                 return timeEntry != null && timeEntry.Activity.Id == command.ActivityId;
             })
             .WithMessage("The specified TimeEntry does not exist or does not match the ActivityId");
@@ -56,7 +56,7 @@ public class UpdateCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHan
 {
     public async Task<DetachedTimeEntryDTO> Handle(UpdateCommand request, CancellationToken cancellationToken)
     {
-        await uow.DetachedTimeEntryRepository.Update(request.DetachedTimeEntry.Id!, mapper.Map<DetachedTimeEntry>(request.DetachedTimeEntry));
+        await uow.TimeEntryRepository.Update(request.DetachedTimeEntry.Id!, mapper.Map<DetachedTimeEntry>(request.DetachedTimeEntry));
         return request.DetachedTimeEntry;
     }
 }

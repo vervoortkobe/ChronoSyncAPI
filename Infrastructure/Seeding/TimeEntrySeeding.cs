@@ -9,7 +9,7 @@ namespace Infrastructure.Seeding
     {
         public static void Seed(IMongoDatabase database, List<Activity> activities)
         {
-            var collection = database.GetCollection<TimeEntry>("TimeEntries");
+            var collection = database.GetCollection<BaseTimeEntry>("TimeEntries");
 
             var timeEntries = new List<TimeEntry>
             {
@@ -38,7 +38,8 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            if (collection.CountDocuments(FilterDefinition<TimeEntry>.Empty) <= 0)
+            var filter = Builders<BaseTimeEntry>.Filter.Eq("_t", nameof(TimeEntry));
+            if (collection.CountDocuments(filter) == 0)
                 collection.InsertMany(timeEntries);
         }
     }
