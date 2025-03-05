@@ -8,16 +8,16 @@ namespace Application.CQRS.Activities;
 
 public class GetTimeEntriesByActivityIdQuery : IRequest<IEnumerable<TimeEntryDTO>>
 {
-    public required string Id { get; init; }
+    public required string ActivityId { get; init; }
 }
 
 public class GetTimeEntriesByActivityIdQueryValidator : AbstractValidator<GetTimeEntriesByActivityIdQuery>
 {
     public GetTimeEntriesByActivityIdQueryValidator()
     {
-        RuleFor(query => query.Id)
+        RuleFor(query => query.ActivityId)
             .NotNull()
-            .WithMessage("Id cannot be null");
+            .WithMessage("ActivityId cannot be null");
     }
 }
 
@@ -25,6 +25,6 @@ public class GetTimeEntriesByActivityIdQueryHandler(IUnitOfWork uow, IMapper map
 {
     public async Task<IEnumerable<TimeEntryDTO>> Handle(GetTimeEntriesByActivityIdQuery request, CancellationToken cancellationToken)
     {
-        return mapper.Map<IEnumerable<TimeEntryDTO>>(await uow.TimeEntryRepository.Find(o => o.Id == request.Id));
+        return mapper.Map<IEnumerable<TimeEntryDTO>>(await uow.TimeEntryRepository.Find(o => o.Id == request.ActivityId));
     }
 }

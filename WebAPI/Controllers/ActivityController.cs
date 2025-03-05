@@ -24,7 +24,7 @@ public class ActivityController(IMediator mediator) : APIv1Controller
     [HttpGet("{activityId}/timeentries")]
     public async Task<IActionResult> GetTimeEntries(string activityId)
     {
-        return Ok(await mediator.Send(new GetTimeEntriesByActivityIdQuery() { Id = activityId }));
+        return Ok(await mediator.Send(new GetTimeEntriesByActivityIdQuery() { ActivityId = activityId }));
     }
 
     [HttpPost("{activityId}/timeentries")]

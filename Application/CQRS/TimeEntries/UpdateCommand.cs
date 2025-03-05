@@ -32,7 +32,7 @@ public class UpdateCommandValidator : AbstractValidator<UpdateCommand>
                 var timeEntry = await uow.TimeEntryRepository.GetById(id);
                 return timeEntry != null && timeEntry.Activity.Id == command.ActivityId;
             })
-            .WithMessage("The specified time entry does not exist or does not match the activity ID");
+            .WithMessage("The specified TimeEntry does not exist or does not match the ActivityId");
 
         RuleFor(x => x.TimeEntry)
             .Must(x => (x.StartTime.HasValue && x.EndTime.HasValue) || x.Duration.HasValue)
