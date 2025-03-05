@@ -8,37 +8,37 @@ namespace Application.CQRS.DetachedTimeEntries
 {
     public class AddCommand : IRequest<DetachedTimeEntryDTO>
     {
-        public required DetachedTimeEntryDTO TimeEntry { get; set; }
+        public required DetachedTimeEntryDTO DetachedTimeEntry { get; set; }
     }
 
     public class AddCommandValidator : AbstractValidator<AddCommand>
     {
         public AddCommandValidator(IUnitOfWork uow)
         {
-            RuleFor(x => x.TimeEntry.Activity)
+            RuleFor(x => x.DetachedTimeEntry.Category)
                 .NotNull()
-                .WithMessage("Activity cannot be empty");
+                .WithMessage("Category cannot be empty");
 
-            RuleFor(x => x.TimeEntry.Activity.Id)
-                .MustAsync(async (id, cancellation) =>
-                {
-                    var activity = await uow.ActivityRepository.GetById(id);
-                    return (activity != null);
-                })
-                .WithMessage("The specified activity does not exist");
+            RuleFor(x => x.DetachedTimeEntry.Date)
+                .NotNull()
+                .WithMessage("Date cannot be empty");
 
-            RuleFor(x => x.TimeEntry)
+            RuleFor(x => x.DetachedTimeEntry)
                 .Must(x => (x.StartTime.HasValue && x.EndTime.HasValue) || x.Duration.HasValue)
                 .WithMessage("TimeEntry must have StartTime and EndTime, or Duration");
+
+            RuleFor(x => x.DetachedTimeEntry.Description)
+                .NotNull()
+                .WithMessage("Description cannot be empty");
         }
     }
 
-    public class AddCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandler<AddCommand, TimeEntryDTO>
+    public class AddCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandler<AddCommand, DetachedTimeEntryDTO>
     {
-        public async Task<TimeEntryDTO> Handle(AddCommand request, CancellationToken cancellationToken)
+        public async Task<DetachedTimeEntryDTO> Handle(AddCommand request, CancellationToken cancellationToken)
         {
-            await uow.TimeEntryRepository.Create(mapper.Map<TimeEntry>(request.TimeEntry));
-            return request.TimeEntry;
+            await uow.DetachedTimeEntryRepository.Create(mapper.Map<DetachedTimeEntry>(request.DetachedTimeEntry));
+            return request.DetachedTimeEntry;
         }
     }
 }
