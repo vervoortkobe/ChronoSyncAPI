@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
-[ApiController]
-[Route("timeentries")]
 public class TimeEntryController(IMediator mediator) : APIv1Controller
 {
     [HttpGet()]

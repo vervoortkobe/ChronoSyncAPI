@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
-[ApiController]
-[Route("activities")]
 public class ActivityController(IMediator mediator) : APIv1Controller
 {
     [HttpGet()]
