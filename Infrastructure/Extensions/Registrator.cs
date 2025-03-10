@@ -16,7 +16,7 @@ public static class Registrator
 
     public static IServiceCollection RegisterDbContext(this IServiceCollection services)
     {
-        services.AddSingleton(new XylosContext(Environment.GetEnvironmentVariable("CHRONOSYNC_MONGODB_CONNSTR", EnvironmentVariableTarget.User)));
+        services.AddSingleton(new XylosContext(Environment.GetEnvironmentVariable("CHRONOSYNC_MONGODB_CONNSTR")));
         return services;
     }
 
