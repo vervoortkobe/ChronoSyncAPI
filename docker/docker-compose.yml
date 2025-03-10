@@ -1,0 +1,17 @@
+name: chronosync
+services:
+  backend:
+    restart: "always"
+    build:
+      context: ..
+      dockerfile: "./WebAPI/Dockerfile"
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+    environment:
+      CHRONOSYNC_MONGODB_CONNSTR: ${CHRONOSYNC_MONGODB_CONNSTR}
+    container_name: chronosync-api
+
+networks:
+  backend:
