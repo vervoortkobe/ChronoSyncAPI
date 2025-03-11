@@ -26,6 +26,6 @@ public class GetDetachedTimeEntriesByActivityIdQueryHandler(IUnitOfWork uow, IMa
 {
     public async Task<IEnumerable<DetachedTimeEntryDTO>> Handle(GetDetachedTimeEntriesByActivityIdQuery request, CancellationToken cancellationToken)
     {
-        return mapper.Map<IEnumerable<DetachedTimeEntryDTO>>(await uow.DetachedTimeEntryRepository.Find(o => o.Id == new ObjectId(request.ActivityId).ToString()));
+        return mapper.Map<IEnumerable<DetachedTimeEntryDTO>>(await uow.DetachedTimeEntryRepository.Find(o => o.AdminActivity.Id == request.ActivityId));
     }
 }
