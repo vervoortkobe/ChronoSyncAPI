@@ -30,8 +30,8 @@ public class GetDetachedTimeEntryByActivityIdQueryHandler(IUnitOfWork uow, IMapp
 {
     public async Task<DetachedTimeEntryDTO> Handle(GetDetachedTimeEntryByActivityIdQuery request, CancellationToken cancellationToken)
     {
-        var timeEntry = await uow.TimeEntryRepository.GetById(request.TimeEntryId);
-        if (timeEntry != null && timeEntry.Activity.Id == request.ActivityId)
+        var timeEntry = await uow.DetachedTimeEntryRepository.GetById(request.TimeEntryId);
+        if (timeEntry != null && timeEntry.AdminActivity.Id == request.ActivityId)
             return mapper.Map<DetachedTimeEntryDTO>(timeEntry);
 
         return new DetachedTimeEntryDTO() { Category = 0, Date = new DateOnly(), Description = "" };

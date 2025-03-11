@@ -1,5 +1,7 @@
 ﻿using Domain.Model.Activities;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 
 namespace Infrastructure.Configuration;
 
@@ -13,6 +15,9 @@ public class ActivityConfiguration
             {
                 cm.AutoMap();
                 cm.SetIgnoreExtraElements(true);
+
+                cm.MapIdMember(c => c.Id).SetSerializer(new StringSerializer(BsonType.ObjectId));
+                cm.MapMember(c => c.XylosUser).SetIsRequired(true);
 
                 cm.MapMember(c => c.Organisation).SetIsRequired(true);
                 cm.MapMember(c => c.Project).SetIsRequired(true);

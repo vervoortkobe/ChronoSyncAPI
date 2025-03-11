@@ -4,7 +4,7 @@ using Infrastructure.Contexts;
 
 namespace Infrastructure.Repositories;
 
-public class ActivityRepository : GenericRepository<BaseActivity>, IActivityRepository
+public class ActivityRepository : GenericRepository<Activity>, IActivityRepository
 {
     public ActivityRepository(XylosContext context)
         : base(context.Database, "Activities")

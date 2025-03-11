@@ -56,7 +56,7 @@ public class UpdateCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHan
 {
     public async Task<DetachedTimeEntryDTO> Handle(UpdateCommand request, CancellationToken cancellationToken)
     {
-        await uow.TimeEntryRepository.Update(request.DetachedTimeEntry.Id!, mapper.Map<DetachedTimeEntry>(request.DetachedTimeEntry));
+        await uow.DetachedTimeEntryRepository.Update(request.DetachedTimeEntry.Id!, mapper.Map<DetachedTimeEntry>(request.DetachedTimeEntry));
         return request.DetachedTimeEntry;
     }
 }

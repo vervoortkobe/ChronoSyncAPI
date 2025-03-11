@@ -36,7 +36,7 @@ public class DeleteCommandHandler(IUnitOfWork uow) : IRequestHandler<DeleteComma
 {
     public async Task<bool> Handle(DeleteCommand request, CancellationToken cancellationToken)
     {
-        await uow.TimeEntryRepository.Delete(request.TimeEntryId!);
+        await uow.DetachedTimeEntryRepository.Delete(request.TimeEntryId!);
         return true;
     }
 }

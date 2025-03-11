@@ -14,6 +14,6 @@ public class GetAllQueryHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandl
 {
     public async Task<IEnumerable<AdminActivityDTO>> Handle(GetAllQuery request, CancellationToken cancellationToken)
     {
-        return mapper.Map<IEnumerable<AdminActivityDTO>>(await uow.ActivityRepository.GetAll(request.PageNr, request.PageSize));
+        return mapper.Map<IEnumerable<AdminActivityDTO>>(await uow.AdminActivityRepository.GetAll(request.PageNr, request.PageSize));
     }
 }

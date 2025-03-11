@@ -9,14 +9,14 @@ namespace Infrastructure.Seeding
     {
         public static void Seed(IMongoDatabase database, List<AdminActivity> adminActivities)
         {
-            var collection = database.GetCollection<BaseTimeEntry>("TimeEntries");
+            var collection = database.GetCollection<DetachedTimeEntry>("DetachedTimeEntries");
 
             var timeEntries = new List<DetachedTimeEntry>
             {
                 new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
-                    Activity = adminActivities[0],
+                    AdminActivity = adminActivities[0],
                     Category = Category.CLIENT,
                     Date = new DateOnly(2025, 3, 3),
                     Description = "Bezig gehouden met CLIENT XYZ",
@@ -26,7 +26,7 @@ namespace Infrastructure.Seeding
                 new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
-                    Activity = adminActivities[1],
+                    AdminActivity = adminActivities[1],
                     Category = Category.PROJECT,
                     Date = new DateOnly(2025, 2, 27),
                     Description = "Bezig gehouden met PROJECT XYZ",
@@ -35,7 +35,7 @@ namespace Infrastructure.Seeding
                 new()
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
-                    Activity = adminActivities[2],
+                    AdminActivity = adminActivities[2],
                     Category = Category.LEARN,
                     Date = new DateOnly(2025, 2, 25),
                     Description = "Bezig gehouden met LEARN XYZ",
@@ -43,7 +43,7 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            var filter = Builders<BaseTimeEntry>.Filter.Eq("_t", nameof(DetachedTimeEntry));
+            var filter = Builders<DetachedTimeEntry>.Filter.Eq("_t", nameof(DetachedTimeEntry));
             if (collection.CountDocuments(filter) == 0)
                 collection.InsertMany(timeEntries);
         }

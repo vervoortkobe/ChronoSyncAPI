@@ -2,6 +2,6 @@
 
 namespace Application.Interfaces;
 
-public interface IActivityRepository : IGenericRepository<BaseActivity>
+public interface IActivityRepository : IGenericRepository<Activity>
 {
 }

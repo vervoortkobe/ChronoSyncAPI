@@ -2,6 +2,6 @@
 
 namespace Application.Interfaces;
 
-public interface ITimeEntryRepository : IGenericRepository<BaseTimeEntry>
+public interface ITimeEntryRepository : IGenericRepository<TimeEntry>
 {
 }
