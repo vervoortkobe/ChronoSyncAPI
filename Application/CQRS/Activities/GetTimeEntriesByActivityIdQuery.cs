@@ -3,6 +3,7 @@ using Application.Interfaces;
 using AutoMapper;
 using FluentValidation;
 using MediatR;
+using MongoDB.Bson;
 
 namespace Application.CQRS.Activities;
 
@@ -25,6 +26,6 @@ public class GetTimeEntriesByActivityIdQueryHandler(IUnitOfWork uow, IMapper map
 {
     public async Task<IEnumerable<TimeEntryDTO>> Handle(GetTimeEntriesByActivityIdQuery request, CancellationToken cancellationToken)
     {
-        return mapper.Map<IEnumerable<TimeEntryDTO>>(await uow.TimeEntryRepository.Find(o => o.Id == request.ActivityId));
+        return mapper.Map<IEnumerable<TimeEntryDTO>>(await uow.TimeEntryRepository.Find(o => o.Id == new ObjectId(request.ActivityId).ToString()));
     }
 }
