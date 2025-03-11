@@ -1,5 +1,6 @@
 using Application.Extensions;
 using Infrastructure.Extensions;
+using WebAPI.Extensions;
 
 namespace WebAPI
 {
@@ -53,6 +54,8 @@ namespace WebAPI
 
             //Enable CORS first
             app.UseCors("AllowChronoSync");
+
+            app.UseErrorHandlingMiddleware();
 
             app.UseHttpsRedirection();
 

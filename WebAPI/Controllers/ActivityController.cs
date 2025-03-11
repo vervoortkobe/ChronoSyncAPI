@@ -7,8 +7,14 @@ namespace WebAPI.Controllers;
 
 public class ActivityController(IMediator mediator) : APIv1Controller
 {
-    [HttpGet()]
+    [HttpGet("all")]
     public async Task<IActionResult> GetAll([FromQuery] int pageNr = 1, [FromQuery] int pageSize = 10)
+    {
+        return Ok(await mediator.Send(new Application.CQRS.Activities.GetAllQuery() { PageNr = pageNr, PageSize = pageSize }));
+    }
+
+    [HttpGet()]
+    public async Task<IActionResult> GetAllForUser([FromHeader] [FromQuery] int pageNr = 1, [FromQuery] int pageSize = 10)
     {
         return Ok(await mediator.Send(new Application.CQRS.Activities.GetAllQuery() { PageNr = pageNr, PageSize = pageSize }));
     }
