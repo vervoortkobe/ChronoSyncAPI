@@ -5,14 +5,14 @@ namespace Infrastructure.UOW;
 public class UnitOfWork(
        IActivityRepository activityRepository,
        IAdminActivityRepository adminActivityRepository,
-       IDetachedTimeEntryRepository detachedtimeEntryRepository,
+       IDetachedTimeEntryRepository detachedTimeEntryRepository,
        ITimeEntryRepository timeEntryRepository,
        IXylosUserRepository xylosUserRepository
     ) : IUnitOfWork
 {
     public IActivityRepository ActivityRepository => activityRepository;
     public IAdminActivityRepository AdminActivityRepository => adminActivityRepository;
-    public IDetachedTimeEntryRepository DetachedtimeEntryRepository => detachedtimeEntryRepository;
+    public IDetachedTimeEntryRepository DetachedTimeEntryRepository => detachedTimeEntryRepository;
     public ITimeEntryRepository TimeEntryRepository => timeEntryRepository;
     public IXylosUserRepository XylosUserRepository => xylosUserRepository;
 }

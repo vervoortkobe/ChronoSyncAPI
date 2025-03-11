@@ -30,9 +30,7 @@ namespace Infrastructure.Seeding
                 }
             };
 
-
-            var filter = Builders<AdminActivity>.Filter.Eq("_t", nameof(AdminActivity));
-            if (collection.CountDocuments(filter) == 0)
+            if (collection.CountDocuments(FilterDefinition<AdminActivity>.Empty) <= 0)
                 collection.InsertMany(adminActivities);
 
             DetachedTimeEntrySeeding.Seed(database, adminActivities);

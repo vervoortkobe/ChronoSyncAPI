@@ -9,7 +9,7 @@ public class TimeEntry
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
-    public required BaseActivity Activity { get; set; }
+    public required Activity Activity { get; set; }
     public DateTime? StartTime { get; set; }
     public DateTime? EndTime { get; set; }
     // Amount of minutes

@@ -38,8 +38,7 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            var filter = Builders<TimeEntry>.Filter.Eq("_t", nameof(TimeEntry));
-            if (collection.CountDocuments(filter) == 0)
+            if (collection.CountDocuments(FilterDefinition<TimeEntry>.Empty) <= 0)
                 collection.InsertMany(timeEntries);
         }
     }

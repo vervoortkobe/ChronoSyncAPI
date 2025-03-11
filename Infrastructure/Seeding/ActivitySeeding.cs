@@ -52,8 +52,7 @@ namespace Infrastructure.Seeding
                 }
             };
 
-            var filter = Builders<Activity>.Filter.Eq("_t", nameof(Activity));
-            if (collection.CountDocuments(filter) == 0)
+            if (collection.CountDocuments(FilterDefinition<Activity>.Empty) <= 0)
                 collection.InsertMany(activities);
 
             TimeEntrySeeding.Seed(database, activities);
