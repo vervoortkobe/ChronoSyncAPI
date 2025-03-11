@@ -1,8 +1,11 @@
-﻿namespace Application.CQRS.TimeEntries;
+﻿using Domain.Model.Activities;
+
+namespace Application.CQRS.TimeEntries;
 
 public class TimeEntryDTO
 {
     public string? Id { get; set; }
+    public Activity? Activity { get; set; }
     public DateTime? StartTime { get; set; }
     public DateTime? EndTime { get; set; }
     public int? Duration { get; set; }
