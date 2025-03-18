@@ -34,6 +34,6 @@ public class GetDetachedTimeEntryByActivityIdQueryHandler(IUnitOfWork uow, IMapp
         if (detachedTimeEntry != null && detachedTimeEntry.AdminActivity.Id == request.ActivityId)
             return mapper.Map<DetachedTimeEntryDTO>(detachedTimeEntry);
 
-        return new DetachedTimeEntryDTO() { Category = 0, Date = new DateOnly(), Description = "" };
+        return new DetachedTimeEntryDTO() { Category = 0, Date = new DateTime(), Description = "" };
     }
 }

@@ -22,7 +22,7 @@ namespace Infrastructure.Seeding
                     Project = "GalAPagos",
                     Location = "Campus Ellerman",
                     StartDate = new DateOnly(2025,3, 3),
-                    EndDate = new DateOnly(3035, 3, 7),
+                    EndDate = new DateOnly(2025, 3, 7),
                     HoursToSpend = 4,
                     Type = ActivityType.EFFORT
                 },
@@ -34,7 +34,7 @@ namespace Infrastructure.Seeding
                     Project = "OmniBus",
                     Location = "Meeting Room Obelix",
                     StartDate = new DateOnly(2025,3, 3),
-                    EndDate = new DateOnly(3035, 3, 7),
+                    EndDate = new DateOnly(2025, 3, 7),
                     HoursToSpend = 8,
                     Type = ActivityType.EFFORT
                 },
@@ -46,7 +46,7 @@ namespace Infrastructure.Seeding
                     Project = "GalAPagos",
                     Location = "Campus Ellerman",
                     StartDate = new DateOnly(2025,3, 5),
-                    EndDate = new DateOnly(3035, 3, 5),
+                    EndDate = new DateOnly(2025, 3, 5),
                     HoursToSpend = 5,
                     Type = ActivityType.TIME
                 }

@@ -34,6 +34,6 @@ public class GetTimeEntryByActivityIdQueryHandler(IUnitOfWork uow, IMapper mappe
         if (timeEntry != null && timeEntry.Activity.Id == request.ActivityId)
             return mapper.Map<TimeEntryDTO>(timeEntry);
 
-        return new TimeEntryDTO() { Date = new DateOnly(), Description = "" };
+        return new TimeEntryDTO() { Date = new DateTime(), Description = "" };
     }
 }

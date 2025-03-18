@@ -12,10 +12,10 @@ public class Mappings : Profile
 {
     public Mappings()
     {
-        CreateMap<Activity, ActivityDTO>();
-        CreateMap<AdminActivity, AdminActivityDTO>();
-        CreateMap<TimeEntry, TimeEntryDTO>();
-        CreateMap<DetachedTimeEntry, DetachedTimeEntryDTO>();
-        CreateMap<XylosUser, XylosUserDTO>();
+        CreateMap<Activity, ActivityDTO>().ReverseMap();
+        CreateMap<AdminActivity, AdminActivityDTO>().ReverseMap();
+        CreateMap<TimeEntry, TimeEntryDTO>().ReverseMap();
+        CreateMap<DetachedTimeEntry, DetachedTimeEntryDTO>().ReverseMap();
+        CreateMap<XylosUser, XylosUserDTO>().ReverseMap();
     }
 }

@@ -51,6 +51,7 @@ public class AddCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandle
 {
     public async Task<DetachedTimeEntryDTO> Handle(AddCommand request, CancellationToken cancellationToken)
     {
+        request.DetachedTimeEntry.AdminActivity = await uow.AdminActivityRepository.GetById(request.ActivityId);
         await uow.DetachedTimeEntryRepository.Create(mapper.Map<DetachedTimeEntry>(request.DetachedTimeEntry));
         return request.DetachedTimeEntry;
     }

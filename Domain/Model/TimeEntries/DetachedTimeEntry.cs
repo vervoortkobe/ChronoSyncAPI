@@ -11,7 +11,7 @@ public class DetachedTimeEntry
     public string? Id { get; set; }
     public required AdminActivity AdminActivity { get; set; }
     public required Category Category { get; set; }
-    public required DateOnly Date { get; set; }
+    public required DateTime Date { get; set; }
     public DateTime? StartTime { get; set; }
     public DateTime? EndTime { get; set; }
     // Amount of minutes

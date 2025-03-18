@@ -17,7 +17,7 @@ namespace Infrastructure.Seeding
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
                     Activity = activities[1],
-                    Date = new DateOnly(2025, 3, 9),
+                    Date = new DateTime(2025, 3, 9),
                     StartTime = DateTime.Now,
                     EndTime = DateTime.Now.AddMinutes(334),
                     Description = "Meeting with company Xylosophos"
@@ -26,7 +26,7 @@ namespace Infrastructure.Seeding
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
                     Activity = activities[1],
-                    Date = new DateOnly(2025, 3, 10),
+                    Date = new DateTime(2025, 3, 10),
                     Duration = 146,
                     Description = "Meeting with company Xylosophos"
                 },
@@ -34,7 +34,7 @@ namespace Infrastructure.Seeding
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
                     Activity = activities[2],
-                    Date = new DateOnly(2025, 3, 11),
+                    Date = new DateTime(2025, 3, 11),
                     StartTime = DateTime.Now,
                     EndTime = DateTime.Now.AddMinutes(306),
                     Description = "Consulting AP Hogeschool"
