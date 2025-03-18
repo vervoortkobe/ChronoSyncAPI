@@ -28,6 +28,11 @@ public class AddCommandValidator : AbstractValidator<AddCommand>
             })
             .WithMessage("The specified activity does not exist");
 
+        RuleFor(x => x.TimeEntry.Date)
+            .NotNull()
+            .NotEmpty()
+            .WithMessage("Date cannot be empty");
+
         RuleFor(x => x.TimeEntry)
             .Must(x => (x.StartTime.HasValue && x.EndTime.HasValue) || x.Duration.HasValue)
             .WithMessage("TimeEntry must have StartTime and EndTime, or Duration");
@@ -43,6 +48,7 @@ public class AddCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandle
 {
     public async Task<TimeEntryDTO> Handle(AddCommand request, CancellationToken cancellationToken)
     {
+        request.TimeEntry.Activity = await uow.ActivityRepository.GetById(request.ActivityId);
         await uow.TimeEntryRepository.Create(mapper.Map<TimeEntry>(request.TimeEntry));
         return request.TimeEntry;
     }
