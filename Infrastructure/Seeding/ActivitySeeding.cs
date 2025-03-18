@@ -21,8 +21,8 @@ namespace Infrastructure.Seeding
                     Organisation = "Consult Contract AP Hogeschool",
                     Project = "GalAPagos",
                     Location = "Campus Ellerman",
-                    StartDate = new DateOnly(2025,3, 3),
-                    EndDate = new DateOnly(2025, 3, 7),
+                    StartDate = new DateTime(2025,3, 3),
+                    EndDate = new DateTime(2025, 3, 7),
                     HoursToSpend = 4,
                     Type = ActivityType.EFFORT
                 },
@@ -33,8 +33,8 @@ namespace Infrastructure.Seeding
                     Organisation = "Meeting Company Xylosophos",
                     Project = "OmniBus",
                     Location = "Meeting Room Obelix",
-                    StartDate = new DateOnly(2025,3, 3),
-                    EndDate = new DateOnly(2025, 3, 7),
+                    StartDate = new DateTime(2025,3, 3),
+                    EndDate = new DateTime(2025, 3, 7),
                     HoursToSpend = 8,
                     Type = ActivityType.EFFORT
                 },
@@ -45,8 +45,8 @@ namespace Infrastructure.Seeding
                     Organisation = "Consult Contract AP Hogeschool",
                     Project = "GalAPagos",
                     Location = "Campus Ellerman",
-                    StartDate = new DateOnly(2025,3, 5),
-                    EndDate = new DateOnly(2025, 3, 5),
+                    StartDate = new DateTime(2025,3, 5),
+                    EndDate = new DateTime(2025, 3, 5),
                     HoursToSpend = 5,
                     Type = ActivityType.TIME
                 }
