@@ -1,4 +1,5 @@
-﻿using Domain.Model.Activities;
+﻿using Application.Exceptions;
+using Domain.Model.Activities;
 using Domain.Model.TimeEntries;
 using Domain.Model.Users;
 using Infrastructure.Configuration;
@@ -11,10 +12,12 @@ public class XylosContext
 {
     public IMongoDatabase Database { get; }
 
-    public XylosContext(string? connectionString)
+    public XylosContext()
     {
+        string? connectionString = Environment.GetEnvironmentVariable("CHRONOSYNC_MONGODB_CONNSTR");
+
         if (string.IsNullOrEmpty(connectionString))
-            throw new InvalidOperationException("No MongoDB connectionString found in environment variables!");
+            throw new MissingEnvironmentVariableException("No MongoDB connectionString found in environment variables!");
 
         var mongoUrl = new MongoUrl(connectionString);
         var client = new MongoClient(mongoUrl);

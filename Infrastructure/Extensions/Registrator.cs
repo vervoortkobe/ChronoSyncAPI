@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Exceptions;
+using Application.Interfaces;
 using Infrastructure.Contexts;
 using Infrastructure.Repositories;
 using Infrastructure.UOW;
@@ -16,7 +17,7 @@ public static class Registrator
 
     public static IServiceCollection RegisterDbContext(this IServiceCollection services)
     {
-        services.AddSingleton(new XylosContext(Environment.GetEnvironmentVariable("CHRONOSYNC_MONGODB_CONNSTR")));
+        services.AddSingleton(new XylosContext());
         return services;
     }
 
