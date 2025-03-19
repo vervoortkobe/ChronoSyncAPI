@@ -9,5 +9,11 @@ namespace WebAPI.Extensions
             app.UseMiddleware<ExceptionHandlingMiddleware>();
             return app;
         }
+
+        public static IApplicationBuilder UseAccessKeyAuthenticationMiddleware(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<AccessKeyAuthenticationMiddleware>();
+            return app;
+        }
     }
 }

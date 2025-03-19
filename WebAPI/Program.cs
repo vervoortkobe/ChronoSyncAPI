@@ -55,11 +55,15 @@ namespace WebAPI
             //Enable CORS first
             app.UseCors("AllowChronoSync");
 
+            app.UseRouting();
+
             app.UseErrorHandlingMiddleware();
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+
+            app.UseAccessKeyAuthenticationMiddleware();
 
             app.MapControllers();
 
