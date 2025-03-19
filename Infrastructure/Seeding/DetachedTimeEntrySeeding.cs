@@ -19,9 +19,10 @@ namespace Infrastructure.Seeding
                     AdminActivity = adminActivities[0],
                     Category = Category.CLIENT,
                     Date = new DateTime(2025, 3, 3),
-                    Description = "Bezig gehouden met CLIENT XYZ",
                     StartTime = DateTime.Now,
-                    EndTime = DateTime.Now.AddMinutes(105)
+                    EndTime = DateTime.Now.AddMinutes(105),
+                    Break = 47,
+                    Description = "Bezig gehouden met CLIENT XYZ"
                 },
                 new()
                 {
@@ -29,8 +30,8 @@ namespace Infrastructure.Seeding
                     AdminActivity = adminActivities[1],
                     Category = Category.PROJECT,
                     Date = new DateTime(2025, 2, 27),
-                    Description = "Bezig gehouden met PROJECT XYZ",
-                    Duration = 72
+                    Duration = 72,
+                    Description = "Bezig gehouden met PROJECT XYZ"
                 },
                 new()
                 {
@@ -38,8 +39,8 @@ namespace Infrastructure.Seeding
                     AdminActivity = adminActivities[2],
                     Category = Category.LEARN,
                     Date = new DateTime(2025, 2, 25),
-                    Description = "Bezig gehouden met LEARN XYZ",
-                    Duration = 95
+                    Duration = 95,
+                    Description = "Bezig gehouden met LEARN XYZ"
                 }
             };
 

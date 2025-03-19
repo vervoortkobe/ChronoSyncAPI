@@ -20,6 +20,7 @@ namespace Infrastructure.Seeding
                     Date = new DateTime(2025, 3, 9),
                     StartTime = DateTime.Now,
                     EndTime = DateTime.Now.AddMinutes(334),
+                    Break = 37,
                     Description = "Meeting with company Xylosophos"
                 },
                 new()
@@ -37,6 +38,7 @@ namespace Infrastructure.Seeding
                     Date = new DateTime(2025, 3, 11),
                     StartTime = DateTime.Now,
                     EndTime = DateTime.Now.AddMinutes(306),
+                    Break = 28,
                     Description = "Consulting AP Hogeschool"
                 }
             };
