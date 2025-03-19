@@ -10,7 +10,8 @@ services:
     networks:
       - backend
     environment:
-      CHRONOSYNC_MONGODB_CONNSTR: ${CHRONOSYNC_MONGODB_CONNSTR}
+      - CHRONOSYNC_MONGODB_CONNSTR: ${CHRONOSYNC_MONGODB_CONNSTR}
+      - CHRONOSYNC_ACCESS_KEY: ${CHRONOSYNC_ACCESS_KEY}
     container_name: chronosync-api
 
 networks:
