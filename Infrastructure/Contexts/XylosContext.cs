@@ -17,7 +17,7 @@ public class XylosContext
         string? connectionString = Environment.GetEnvironmentVariable("CHRONOSYNC_MONGODB_CONNSTR");
 
         if (string.IsNullOrEmpty(connectionString))
-            throw new MissingEnvironmentVariableException("No MongoDB connectionString found in environment variables!");
+            throw new MissingEnvironmentVariableException("No connectionString found in environment variables!");
 
         var mongoUrl = new MongoUrl(connectionString);
         var client = new MongoClient(mongoUrl);

@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver.Core.Configuration;
+﻿using Application.Exceptions;
+using MongoDB.Driver.Core.Configuration;
 
 namespace WebAPI.Middleware
 {
@@ -13,19 +14,22 @@ namespace WebAPI.Middleware
 
         public async Task InvokeAsync(HttpContext context)
         {
+            string? accessKey = Environment.GetEnvironmentVariable("CHRONOSYNC_ACCESS_KEY");
 
+            if (string.IsNullOrEmpty(accessKey))
+                throw new MissingEnvironmentVariableException("No accessKey found in environment variables!");
 
-            if (!context.Request.Headers.TryGetValue("X-Access-Key", out var accessKey))
+            if (!context.Request.Headers.TryGetValue("X-Access-Key", out var headerKey))
             {
-                context.Response.StatusCode = 400; // Bad Request
-                await context.Response.WriteAsync("Access key is missing in the request header.");
+                context.Response.StatusCode = 400; //Bad Request
+                await context.Response.WriteAsync("No accessKey was found in the X-Access-Key request header!");
                 return;
             }
 
-            if (!IsValidAccessKey(accessKey, Environment.GetEnvironmentVariable("CHRONOSYNC_ACCESS_KEY")))
+            if (!IsValidAccessKey(headerKey.ToString(), accessKey))
             {
-                context.Response.StatusCode = 401; // Unauthorized
-                await context.Response.WriteAsync("Invalid access key.");
+                context.Response.StatusCode = 401; //Unauthorized
+                await context.Response.WriteAsync("An invalid accessKey was submitted within the request header!");
                 return;
             }
 
