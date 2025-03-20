@@ -34,6 +34,13 @@ public class UpdateCommandValidator : AbstractValidator<UpdateCommand>
             .WithMessage("The specified TimeEntry does not exist or does not match the ActivityId");
 
         RuleFor(x => x.TimeEntry)
+            .Must((command, timeEntry, cancellation) =>
+            {
+                return timeEntry.Id == command.TimeEntryId;
+            })
+            .WithMessage("The specified Id of the TimeEntry does not equal the submitted TimeEntry Id in the route");
+
+        RuleFor(x => x.TimeEntry)
             .Must(x => (x.StartTime.HasValue && x.EndTime.HasValue) || x.Duration.HasValue)
             .WithMessage("TimeEntry must have StartTime and EndTime, or Duration");
 

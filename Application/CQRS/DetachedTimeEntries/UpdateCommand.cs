@@ -34,6 +34,13 @@ public class UpdateCommandValidator : AbstractValidator<UpdateCommand>
             })
             .WithMessage("The specified TimeEntry does not exist or does not match the ActivityId");
 
+        RuleFor(x => x.DetachedTimeEntry)
+            .Must((command, detachedTimeEntry, cancellation) =>
+            {
+                return detachedTimeEntry.Id == command.TimeEntryId;
+            })
+            .WithMessage("The specified Id of the DetachedTimeEntry does not equal the submitted DetachedTimeEntry Id in the route");
+
         RuleFor(x => x.DetachedTimeEntry.Category)
             .NotNull()
             .WithMessage("Category cannot be empty");
