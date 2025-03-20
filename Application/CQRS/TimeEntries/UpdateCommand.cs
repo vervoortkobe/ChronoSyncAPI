@@ -1,5 +1,4 @@
-﻿using Amazon.Runtime.Internal;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using AutoMapper;
 using Domain.Model.TimeEntries;
 using FluentValidation;
@@ -49,6 +48,10 @@ public class UpdateCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHan
 {
     public async Task<TimeEntryDTO> Handle(UpdateCommand request, CancellationToken cancellationToken)
     {
+        var activity = await uow.ActivityRepository.GetById(request.ActivityId);
+        if (activity != null && activity.Id == request.ActivityId)
+            request.TimeEntry.Activity = activity;
+
         await uow.TimeEntryRepository.Update(request.TimeEntry.Id!, mapper.Map<TimeEntry>(request.TimeEntry));
         return request.TimeEntry;
     }

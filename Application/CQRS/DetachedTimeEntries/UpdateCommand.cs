@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.CQRS.TimeEntries;
+using Application.Interfaces;
 using AutoMapper;
 using Domain.Model.TimeEntries;
 using FluentValidation;
@@ -56,6 +57,10 @@ public class UpdateCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHan
 {
     public async Task<DetachedTimeEntryDTO> Handle(UpdateCommand request, CancellationToken cancellationToken)
     {
+        var adminActivity = await uow.AdminActivityRepository.GetById(request.ActivityId);
+        if (adminActivity != null && adminActivity.Id == request.ActivityId)
+            request.DetachedTimeEntry.AdminActivity = adminActivity;
+
         await uow.DetachedTimeEntryRepository.Update(request.DetachedTimeEntry.Id!, mapper.Map<DetachedTimeEntry>(request.DetachedTimeEntry));
         return request.DetachedTimeEntry;
     }
