@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using AutoMapper;
+using Domain.Model.Activities;
 using Domain.Model.TimeEntries;
 using FluentValidation;
 using MediatR;
@@ -60,6 +61,14 @@ public class UpdateCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHan
             request.TimeEntry.Activity = activity;
 
         await uow.TimeEntryRepository.Update(request.TimeEntry.Id!, mapper.Map<TimeEntry>(request.TimeEntry));
+
+        if (request.TimeEntry.EndTime != null && request.TimeEntry.StartTime != null && request.TimeEntry.Break != null)
+            activity!.CalculatedMinutesSpent += (int?)(request.TimeEntry.EndTime - request.TimeEntry.StartTime).Value.TotalMinutes;
+        else
+            activity!.CalculatedMinutesSpent += request.TimeEntry.Duration!;
+
+        await uow.ActivityRepository.Update(request.ActivityId, activity);
+
         return request.TimeEntry;
     }
 }

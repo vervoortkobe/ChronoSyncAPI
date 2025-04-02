@@ -16,6 +16,7 @@ public class Activity
     public required DateTime StartDate { get; set; }
     public required DateTime EndDate { get; set; }
     public required int HoursToSpend { get; set; }
+    public int? CalculatedMinutesSpent { get; set; }
     public required ActivityType Type { get; set; }
 }
 

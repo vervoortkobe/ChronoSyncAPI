@@ -13,5 +13,6 @@ public class ActivityDTO
     public required DateTime StartDate { get; set; }
     public required DateTime EndDate { get; set; }
     public required int HoursToSpend { get; set; }
+    public required int CalculatedMinutesSpent { get; set; }
     public required ActivityType Type { get; set; }
 }

@@ -1,4 +1,6 @@
 ﻿using Application.Interfaces;
+using Domain.Model.Activities;
+using Domain.Model.TimeEntries;
 using FluentValidation;
 using MediatR;
 
@@ -36,6 +38,16 @@ public class DeleteCommandHandler(IUnitOfWork uow) : IRequestHandler<DeleteComma
 {
     public async Task<bool> Handle(DeleteCommand request, CancellationToken cancellationToken)
     {
+        Activity activity = await uow.ActivityRepository.GetById(request.ActivityId);
+        TimeEntry timeEntry = await uow.TimeEntryRepository.GetById(request.TimeEntryId);
+
+        if (timeEntry!.EndTime != null && timeEntry.StartTime != null && timeEntry.Break != null)
+            activity!.CalculatedMinutesSpent -= (int?)(timeEntry.EndTime - timeEntry.StartTime).Value.TotalMinutes;
+        else
+            activity!.CalculatedMinutesSpent -= timeEntry.Duration!;
+
+        await uow.ActivityRepository.Update(request.ActivityId, activity);
+
         await uow.TimeEntryRepository.Delete(request.TimeEntryId!);
         return true;
     }

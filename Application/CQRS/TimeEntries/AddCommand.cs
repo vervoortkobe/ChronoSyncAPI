@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using AutoMapper;
+using Domain.Model.Activities;
 using Domain.Model.TimeEntries;
 using FluentValidation;
 using MediatR;
@@ -48,8 +49,17 @@ public class AddCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandle
 {
     public async Task<TimeEntryDTO> Handle(AddCommand request, CancellationToken cancellationToken)
     {
-        request.TimeEntry.Activity = await uow.ActivityRepository.GetById(request.ActivityId);
         await uow.TimeEntryRepository.Create(mapper.Map<TimeEntry>(request.TimeEntry));
+
+        Activity activity = await uow.ActivityRepository.GetById(request.ActivityId);
+
+        if (request.TimeEntry.EndTime != null && request.TimeEntry.StartTime != null && request.TimeEntry.Break != null)
+            activity!.CalculatedMinutesSpent += (int?)(request.TimeEntry.EndTime - request.TimeEntry.StartTime).Value.TotalMinutes;
+        else
+            activity!.CalculatedMinutesSpent += request.TimeEntry.Duration!;
+
+        await uow.ActivityRepository.Update(request.ActivityId, activity);
+
         return request.TimeEntry;
     }
 }
