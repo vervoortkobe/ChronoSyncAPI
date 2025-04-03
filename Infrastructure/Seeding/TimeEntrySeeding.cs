@@ -77,7 +77,7 @@ namespace Infrastructure.Seeding
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
                     Activity = activities[4],
-                    Date = new DateTime(2025, 4, 1),
+                    Date = new DateTime(2025, 3, 31),
                     Duration = 123,
                     Description = "Overleg ChronoSync applicatie"
                 },
@@ -86,7 +86,7 @@ namespace Infrastructure.Seeding
                 {
                     Id = ObjectId.GenerateNewId().ToString(),
                     Activity = activities[5],
-                    Date = new DateTime(2025, 3, 31),
+                    Date = new DateTime(2025, 4, 2),
                     Duration = 245,
                     Description = "Analyse ChronoSync applicatie"
                 },
