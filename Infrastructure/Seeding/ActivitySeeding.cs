@@ -149,6 +149,35 @@ namespace Infrastructure.Seeding
                     CalculatedMinutesSpent = 243,
                     Type = ActivityType.TIME
                 },
+                // This week
+                // Effort
+                new()
+                {
+                    Id = ObjectId.GenerateNewId().ToString(),
+                    XylosUser = users[1],
+                    Organisation = "Consult Contract AP Hogeschool",
+                    Project = "GalAPagos",
+                    Location = "Campus Viaduct",
+                    StartDate = new DateTime(2025, 4, 14),
+                    EndDate = new DateTime(2025, 4, 17),
+                    HoursToSpend = 4,
+                    CalculatedMinutesSpent = 62,
+                    Type = ActivityType.EFFORT
+                },
+                /// Time
+                new()
+                {
+                    Id = ObjectId.GenerateNewId().ToString(),
+                    XylosUser = users[1],
+                    Organisation = "Software Company Thorios",
+                    Project = "ThermoApp",
+                    Location = "Antwerpselei 43, 2000 Antwerp",
+                    StartDate = new DateTime(2025, 4, 16),
+                    EndDate = new DateTime(2025, 4, 16),
+                    HoursToSpend = 4,
+                    CalculatedMinutesSpent = 8,
+                    Type = ActivityType.TIME
+                },
             };
 
             if (collection.CountDocuments(FilterDefinition<Activity>.Empty) <= 0)

@@ -138,6 +138,24 @@ namespace Infrastructure.Seeding
                     Break = 21,
                     Description = "Grasjes planten"
                 },
+
+                new()
+                {
+                    Id = ObjectId.GenerateNewId().ToString(),
+                    Activity = activities[10],
+                    Date = new DateTime(2025, 4, 15),
+                    Duration = 62,
+                    Description = "Database GalAPagos opzetten"
+                },
+                
+                new()
+                {
+                    Id = ObjectId.GenerateNewId().ToString(),
+                    Activity = activities[11],
+                    Date = new DateTime(2025, 4, 16),
+                    Duration = 8,
+                    Description = "Database GalAPagos opzetten"
+                },
             };
 
             if (collection.CountDocuments(FilterDefinition<TimeEntry>.Empty) <= 0)
