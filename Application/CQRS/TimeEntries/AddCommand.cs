@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Exceptions;
+using Application.Interfaces;
 using AutoMapper;
 using Domain.Model.Activities;
 using Domain.Model.TimeEntries;
@@ -49,9 +50,15 @@ public class AddCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandle
 {
     public async Task<TimeEntryDTO> Handle(AddCommand request, CancellationToken cancellationToken)
     {
-        await uow.TimeEntryRepository.Create(mapper.Map<TimeEntry>(request.TimeEntry));
-
         Activity activity = await uow.ActivityRepository.GetById(request.ActivityId);
+        if (activity == null)
+            throw new RelationNotFoundException($"Activity with id {request.ActivityId} not found");
+
+        TimeEntry timeEntry = mapper.Map<TimeEntry>(request.TimeEntry);
+
+        timeEntry.Activity = activity;
+
+        await uow.TimeEntryRepository.Create(mapper.Map<TimeEntry>(request.TimeEntry));
 
         if (request.TimeEntry.EndTime != null && request.TimeEntry.StartTime != null && request.TimeEntry.Break != null)
             activity!.CalculatedMinutesSpent += (int?)(request.TimeEntry.EndTime - request.TimeEntry.StartTime).Value.TotalMinutes;
