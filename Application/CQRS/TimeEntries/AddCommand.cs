@@ -58,7 +58,7 @@ public class AddCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHandle
 
         timeEntry.Activity = activity;
 
-        await uow.TimeEntryRepository.Create(mapper.Map<TimeEntry>(request.TimeEntry));
+        await uow.TimeEntryRepository.Create(timeEntry);
 
         if (request.TimeEntry.EndTime != null && request.TimeEntry.StartTime != null && request.TimeEntry.Break != null)
             activity!.CalculatedMinutesSpent += (int?)(request.TimeEntry.EndTime - request.TimeEntry.StartTime).Value.TotalMinutes;
