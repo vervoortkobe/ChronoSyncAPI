@@ -1,4 +1,8 @@
 # ChronoSyncAPI
+Als stagiair bij Xylos ga ik de uitdaging aan om hun huidige tool voor werkurenregistratie (Omnitracker) om te toveren  
+tot een moderne en efficiënte applicatie. Om dit te volbrengen, ga ik aan de slag met Power Apps en Power Automate.  
+
+---------------------------------------------------------------
 This Testing API is designed to serve as the backbone for the modernization of Xylos' work hours registration tool, Omnitracker.  
 As an intern at Xylos, I am tasked with transforming this legacy tool into a modern, efficient application using Power Apps and Power Automate.  
 The goal is to improve the usability, integration, and automation of work hour tracking, enabling a smoother workflow for employees.  
