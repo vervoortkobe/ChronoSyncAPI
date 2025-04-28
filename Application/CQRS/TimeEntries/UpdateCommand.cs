@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Exceptions;
+using Application.Interfaces;
 using AutoMapper;
 using Domain.Model.Activities;
 using Domain.Model.TimeEntries;
@@ -56,18 +57,29 @@ public class UpdateCommandHandler(IUnitOfWork uow, IMapper mapper) : IRequestHan
 {
     public async Task<TimeEntryDTO> Handle(UpdateCommand request, CancellationToken cancellationToken)
     {
-        var activity = await uow.ActivityRepository.GetById(request.ActivityId);
-        if (activity != null && activity.Id == request.ActivityId)
-            request.TimeEntry.Activity = activity;
+        TimeEntry? timeEntry = await uow.TimeEntryRepository.GetById(request.TimeEntryId);
+        if (timeEntry == null)
+            throw new RelationNotFoundException($"The TimeEntry with id {request.TimeEntryId} doesn't exist.");
 
-        await uow.TimeEntryRepository.Update(request.TimeEntry.Id!, mapper.Map<TimeEntry>(request.TimeEntry));
+        var activity = await uow.ActivityRepository.GetById(request.ActivityId);
+        if (activity == null || activity.Id != request.ActivityId)
+            throw new RelationNotFoundException($"The related Activity with id {request.ActivityId} doesn't exist or is not related to the provided TimeEntry with id {request.TimeEntryId}.");
+
+        request.TimeEntry.Activity = activity;
+
+        if (timeEntry.EndTime != null && timeEntry.StartTime != null && timeEntry.Break != null)
+            activity.CalculatedMinutesSpent -= ((int?)(timeEntry.EndTime - timeEntry.StartTime).Value.TotalMinutes) - timeEntry.Break;
+        else
+            activity.CalculatedMinutesSpent -= timeEntry.Duration;
 
         if (request.TimeEntry.EndTime != null && request.TimeEntry.StartTime != null && request.TimeEntry.Break != null)
-            activity!.CalculatedMinutesSpent += (int?)(request.TimeEntry.EndTime - request.TimeEntry.StartTime).Value.TotalMinutes;
+            activity!.CalculatedMinutesSpent += ((int?)(request.TimeEntry.EndTime - request.TimeEntry.StartTime).Value.TotalMinutes) - request.TimeEntry.Break;
         else
             activity!.CalculatedMinutesSpent += request.TimeEntry.Duration!;
 
         await uow.ActivityRepository.Update(request.ActivityId, activity);
+
+        await uow.TimeEntryRepository.Update(request.TimeEntry.Id!, mapper.Map<TimeEntry>(request.TimeEntry));
 
         return request.TimeEntry;
     }
